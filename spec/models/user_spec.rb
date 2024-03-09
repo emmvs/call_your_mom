@@ -1,3 +1,5 @@
+require "rails_helper.rb"
+
 RSpec.describe User, type: :model do
   it 'is valid with all required attributes' do
     user = User.new(
@@ -7,14 +9,6 @@ RSpec.describe User, type: :model do
       username: 'emmvs',
       email: 'emma@test.com',
       password: '123456',
-      phone_number: '1234567890',
-      preferred_contact_method: 1,
-      date_of_birth: '1997-09-15',
-      profile_picture: 'path/to/image.jpg',
-      how_did_we_meet: 'birth',
-      comment: 'oldest friend',
-      is_active: true,
-      privacy_settings: 'private'
     )
     expect(user).to be_valid
   end

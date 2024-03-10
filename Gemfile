@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+# Core Rails
 gem "rails", "~> 7.0.8"
 gem "sprockets-rails"
 gem "pg", "~> 1.1"
@@ -18,9 +19,10 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "sassc-rails"
 # gem "image_processing", "~> 1.2"
-
-gem "bootstrap", "~> 5.2"
 gem "devise"
+
+# Front End
+gem "bootstrap", "~> 5.2"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
@@ -45,6 +47,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'factory_bot_rails'
   gem "capybara"
   gem "selenium-webdriver"
 end

@@ -28,14 +28,14 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
   end
 
-  it 'has a unique email' do
-    User.create(first_name: 'John', email: 'john@example.com', password: 'password')
-    user = User.new(first_name: 'Jane', email: 'john@example.com', password: 'password123')
+  it 'is invalid with an incorrect email format' do
+    user = User.new(email: 'invalid_email')
     expect(user).not_to be_valid
   end
 
-  it 'is invalid with an incorrect email format' do
-    user = User.new(email: 'invalid_email')
+  it 'has a unique username' do
+    User.create(username: "emmvs", first_name: 'Emma', email: 'emma@test.com', password: '123456')
+    user = User.new(username: "emmvs", first_name: 'Santi', email: 'santi@test.com', password: '123456')
     expect(user).not_to be_valid
   end
 end

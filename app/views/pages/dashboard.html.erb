@@ -1,0 +1,7 @@
+<div class="container m-5">
+  <% if current_user %>
+    <h2>👋 Hello there, <%= current_user.nickname %></h2>
+  <% else %>
+    <h2>Hello, Sunshine! ☀️</h2>
+  <% end %>
+</div>

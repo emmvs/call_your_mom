@@ -1,6 +1,6 @@
 # Clear the database to prevent duplicate records
-User.destroy_all
 Contact.destroy_all
+User.destroy_all
 Friendship.destroy_all
 Interaction.destroy_all
 Medium.destroy_all
@@ -22,6 +22,39 @@ UserSetting.destroy_all
     emoji: ["☀️", "🌈", "🍿", "🐝", "🎈"].sample
   )
 end
+
+User.create(
+  username: "emmvs", 
+  email: "emma@test.com", 
+  password: "123456", 
+  first_name: "Emma", 
+  middle_name: "Anna Agneta", 
+  last_name: "Rünzel",
+  nickname: "Emmsi",
+  emoji: "☀️"
+)
+
+User.create(
+  username: "xxjmsxx", 
+  email: "josh@test.com", 
+  password: "123456", 
+  first_name: "Joshua", 
+  middle_name: nil, 
+  last_name: "Smith",
+  nickname: "Josh",
+  emoji: "🍰"
+)
+
+User.create(
+  username: "santiagosan93", 
+  email: "santi@test.com", 
+  password: "123456", 
+  first_name: "Santiago", 
+  middle_name: nil, 
+  last_name: "Sanchez",
+  nickname: "Santi",
+  emoji: "🐘"
+)
 
 users = User.all
 

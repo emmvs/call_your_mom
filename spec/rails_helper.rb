@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'factory_bot'
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -9,10 +10,12 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # System Tests w/ Capybara
-Capybara.default_driver = :selenium
+if ENV['BROWSER'] == 'true'
+  Capybara.default_driver = :selenium
 
-Capybara.register_driver :rack_test do |app|
-  Capybara::RackTest::Driver.new(app, headers: { 'HTTP_USER_AGENT' => 'Capybara' })
+  Capybara.register_driver :rack_test do |app|
+    Capybara::RackTest::Driver.new(app, headers: { 'HTTP_USER_AGENT' => 'Capybara' })
+  end
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -45,6 +48,9 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  # Facotory Bot
+  config.include FactoryBot::Syntax::Methods
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false

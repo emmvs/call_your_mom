@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  GITHUB_USERNAME_VALIDATION = /\A(?!\.)(?!_)[a-z0-9_\.]+(?<!\.)(?<!_)\z/
+  GITHUB_USERNAME_PATTERN = /\A(?!\.)(?!_)[a-z0-9_\.]+(?<!\.)(?<!_)\z/
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -9,5 +9,5 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships, dependent: :destroy
 
-  validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_VALIDATION, message: "Only allows lowercase letters 🙇🏼‍♀️" }
+  validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_PATTERN, message: "Only allows lowercase letters 🙇🏼‍♀️" }
 end

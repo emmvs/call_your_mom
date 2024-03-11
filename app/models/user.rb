@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  GITHUB_USERNAME_VALIDATION = /\A(?!\.)(?!_)[a-z0-9_\.]+(?<!\.)(?<!_)\z/
+  GITHUB_USERNAME_PATTERN = /\A(?!\.)(?!_)[a-z0-9_\.]+(?<!\.)(?<!_)\z/
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

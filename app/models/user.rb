@@ -6,8 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
 
-  has_many :friendships
-  has_many :friends, through: :friendships
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships, dependent: :destroy
 
   validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_VALIDATION, message: "Only allows lowercase letters 🙇🏼‍♀️" }
 end

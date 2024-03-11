@@ -9,5 +9,5 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships
 
-  validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_VALIDATION, message: "Only allows lowercase letters 🙇🏼‍♀️" }
+  validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_PATTERN, message: "Only allows lowercase letters 🙇🏼‍♀️" }
 end

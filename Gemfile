@@ -3,29 +3,35 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
-# Core Rails
+# Core Rails dependencies
 gem "rails", "~> 7.0.8"
-gem "sprockets-rails"
-gem "pg", "~> 1.1"
-gem "puma", "~> 5.0"
-gem "importmap-rails"
-gem "turbo-rails"
-gem "stimulus-rails"
-gem "jbuilder"
-gem "redis", "~> 4.0"
-# gem "kredis"
-# gem "bcrypt", "~> 3.1.7"
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-gem "bootsnap", require: false
-gem "sassc-rails"
-# gem "image_processing", "~> 1.2"
-gem "devise"
+gem "pg", "~> 1.1" # Database
+gem "puma", "~> 5.0" # Web Server [https://github.com/puma/puma]
+gem "sprockets-rails" # Sprockets f/ Asset Pipeline [https://github.com/rails/sprockets-rails]
 
-# Front End
+# Hotwire
+gem "turbo-rails" # [https://turbo.hotwired.dev]
+gem "stimulus-rails" # JS Framework [https://stimulus.hotwired.dev]
+
+# JavaScript w/o Webpack
+gem "importmap-rails" # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+
+# Stylesheets
+gem "sass-rails" # Sass for stylesheets w/ Rails
+
+# Front End Tools & Styles
 gem "bootstrap", "~> 5.2"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
+
+# Authentication and security
+gem "bcrypt", "~> 3.1.7" # Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+gem "devise" # Comprehensive authentication solution
+
+# Performance & Optimization
+gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ] # Timezone data for Windows
+gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
 
 group :development, :test do
   gem 'rspec-rails'
@@ -35,14 +41,7 @@ group :development, :test do
 end
 
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem "web-console" # Use console on exceptions pages [https://github.com/rails/web-console]
 end
 
 group :test do
@@ -51,3 +50,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# Uncomment the following gems as needed:
+# gem "jbuilder" # For JSON API builder [https://github.com/rails/jbuilder]
+# gem "redis", "~> 4.0" # Redis for ActionCable (in production)
+# gem "kredis" # Enhanced Redis for Rails [https://github.com/rails/kredis]
+# gem "image_processing", "~> 1.2" # Image processing for ActiveStorage
+# gem "rack-mini-profiler" # Performance profiling [https://github.com/MiniProfiler/rack-mini-profiler]
+# gem "spring" # Preloader for faster dev env [https://github.com/rails/spring]

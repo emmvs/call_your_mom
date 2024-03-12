@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships, dependent: :destroy
+  has_many :user_settings, dependent: :destroy
 
-  validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_PATTERN, message: "Only allows lowercase letters 🙇🏼‍♀️" }
+  validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_PATTERN, message: "Must be lowercase letters 🙇🏼‍♀️" }
 end

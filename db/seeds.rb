@@ -1,29 +1,25 @@
-# Clear the database to prevent duplicate records
-Contact.destroy_all
-User.destroy_all
-Friendship.destroy_all
-Interaction.destroy_all
-Medium.destroy_all
+puts "Cleaning Database 🧼"
+sleep 1
+print " ."
+sleep 1
+print " ."
+sleep 1
+puts " ."
+sleep 1
+puts ""
+
+# Clear database to prevent duplicate records
 Note.destroy_all
+Interaction.destroy_all
+Contact.destroy_all
+Friendship.destroy_all
+Medium.destroy_all
 Reminder.destroy_all
 UserSetting.destroy_all
+User.destroy_all
 
 # Users
-5.times do |i|
-  User.create!(
-    email: Faker::Internet.email,
-    encrypted_password: Devise::Encryptor.digest(User, 'password'),
-    username: "user#{i}",
-    password: "123456",
-    first_name: Faker::Name.first_name,
-    middle_name: Faker::Name.middle_name,
-    last_name: Faker::Name.last_name,
-    nickname: Faker::Name.first_name,
-    emoji: ["☀️", "🌈", "🍿", "🐝", "🎈"].sample
-  )
-end
-
-User.create(
+emma = User.create(
   username: "emmvs", 
   email: "emma@test.com", 
   password: "123456", 
@@ -34,7 +30,7 @@ User.create(
   emoji: "☀️"
 )
 
-User.create(
+josh = User.create(
   username: "xxjmsxx", 
   email: "josh@test.com", 
   password: "123456", 
@@ -45,7 +41,7 @@ User.create(
   emoji: "🍰"
 )
 
-User.create(
+santi = User.create(
   username: "santiagosan93", 
   email: "santi@test.com", 
   password: "123456", 
@@ -60,7 +56,7 @@ users = User.all
 
 # Contacts
 users.each do |user|
-  5.times do
+  2.times do
     Contact.create!(
       name: Faker::Name.name,
       relationship: ['friend', 'family', 'colleague'].sample,
@@ -73,24 +69,57 @@ users.each do |user|
   end
 end
 
+Contact.create!(
+  name: 'Cindy',
+  relationship: 'friend',
+  email: 'cindyadjei9@gmail.com',
+  phone_number: '+49 176 62423222',
+  address: 'Wutzkyallee 85, 12353 Berlin',
+  social_media_handle: 'afia_agyeman97',
+  user: emma
+)
+
+Contact.create!(
+  name: 'Mamma',
+  relationship: 'family',
+  email: 'sylvia@ruenzel.de',
+  phone_number: '+49 175 9633288',
+  address: 'Buchenweg 97, 22926 Ahrensburg',
+  social_media_handle: 'kramtomat',
+  user: emma
+)
+
 contacts = Contact.all
 
 # Friendships
-users.each_with_index do |user, index|
-  friend = users.where.not(id: user.id).sample
-  Friendship.create!(
-    status: [0, 1, 2].sample, # assuming 0: requested, 1: accepted, 2: declined
+Friendship.create!(
+    status: 0, # assuming 0: requested, 1: accepted, 2: declined
     requested_at: Time.now,
     responded_at: [nil, Time.now].sample,
-    user: user,
-    friend_id: friend.id
-  )
-end
+    user: josh,
+    friend_id: emma.id
+)
+
+Friendship.create!(
+    status: 1, # assuming 0: requested, 1: accepted, 2: declined
+    requested_at: Time.now,
+    responded_at: [nil, Time.now].sample,
+    user: santi,
+    friend_id: josh.id
+)
+
+Friendship.create!(
+    status: 2, # assuming 0: requested, 1: accepted, 2: declined (for testing!! ♥️)
+    requested_at: Time.now,
+    responded_at: [nil, Time.now].sample,
+    user: emma,
+    friend_id: santi.id
+)
 
 # Media
 users.each do |user|
   Medium.create!(
-    name: ['Email', 'Phone Call', 'Social Media', 'In Person'].sample,
+    name: ['Email', 'Phone Call', 'Social Media', 'In Person', 'Meme', 'Voice Message'].sample,
     user: user
   )
 end
@@ -101,11 +130,11 @@ contacts.each do |contact|
     interaction_date: Faker::Date.between(from: 2.days.ago, to: Date.today),
     user: contact.user,
     contact: contact,
-    medium_id: [1, 2, 3].sample # Assuming these IDs exist in your media table
+    medium_id: Medium.last.id
   )
 end
 
-# Notes (assuming they belong to interactions)
+# Notes
 Interaction.all.each do |interaction|
   Note.create!(
     text: Faker::Lorem.sentence(word_count: 10),
@@ -124,12 +153,19 @@ contacts.each do |contact|
   )
 end
 
-# User Settings
+# User Settings w/ ISO 639-1 Language Codes
 users.each do |user|
   UserSetting.create!(
-    preferred_languages: ['English', 'Spanish', 'French'].sample,
+    preferred_languages: ['en', 'es', 'fr', 'de', 'sv', 'mt', 'ar'].sample,
     user: user
   )
 end
 
-puts "Seed data created successfully!"
+puts "Created #{User.count} Users 🤷🏼‍♂️🧑🏽‍🦱💁🏼‍♀️"
+puts "Created #{Contact.count} Contacts 📇"
+puts "Created #{Reminder.count} Reminders 🔔"
+puts "Created #{Interaction.count} Interactions 📞"
+puts "Created #{Note.count} Notes 📝"
+puts "Created #{Medium.count} Mediums ✉️ ☎️ 🔮"
+puts "Created #{Friendship.count} Friendships ♥️"
+puts "Seed data created successfully! 🌱"

@@ -17,6 +17,14 @@ if ENV['BROWSER'] == 'true'
   end
 end
 
+# Shoulda Matchers
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -51,6 +59,9 @@ RSpec.configure do |config|
   # Facotory Bot
   config.include FactoryBot::Syntax::Methods
 
+  # Requests
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
@@ -73,4 +84,11 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # Warden test helpers
+  config.include Warden::Test::Helpers, type: :feature
+
+  config.after(type: :feature) do
+    Warden.test_reset!
+  end
 end

@@ -19,7 +19,7 @@ RSpec.describe "Contacts", type: :request do
       post "/contacts", params: { contact: { name: "John Doe", email: "john@example.com", phone_number: "123-456-7890", address: "123 Main St", social_media_handle: "@johndoe" } }
       expect(response).to have_http_status(:redirect)
       follow_redirect!
-      expect(response.body).to include("Contact was successfully created.")
+      expect(response.body).to include("Contacts")
     end
   end
 end

@@ -1,5 +1,5 @@
 class Medium < ApplicationRecord
-  MEDIA_TYPES = ['Email', 'Phone Call', 'Social Media', 'In Person', 'Meme', 'Voice Message']
+  MEDIA_TYPES = ['In Person', 'Phone Call', 'Text Message', 'Voice Message', 'Social Media', 'Gaming', 'Email', 'Meme']
 
   belongs_to :user
 end

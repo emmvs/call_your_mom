@@ -5,6 +5,7 @@ RSpec.describe Contact, type: :model do
 
   describe 'associations' do
     it { should belong_to(:user) }
+    subject { build(:contact) }
   end
 
   # Validations

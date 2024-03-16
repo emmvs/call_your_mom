@@ -1,0 +1,12 @@
+<div class="container mt-5">
+  <h2>Contacts 📇</h2>
+  <div class="container-contacts d-flex">
+    <% @contacts.each do |contact| %>
+      <div class="card p-3 rounded m-3">
+        <%= link_to contact_path(contact), class: "text-decoration-none" do %>
+          <%= contact.name %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

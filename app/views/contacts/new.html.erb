@@ -1,0 +1,11 @@
+<div class="container m-5 p-5">
+  <%= simple_form_for @contact do |f| %>
+    <%= f.input :name, label: 'Name of Your Person', error: 'Name is mandatory, please specify one' %>
+    <%= f.input :relationship, collection: ['friend', 'family', 'colleague'], prompt: 'Select Relationship', error: 'Relationship is mandatory, please specify one' %>
+    <%= f.input :email, as: :email, placeholder: 'user@domain.com', error: 'A valid email is mandatory, please specify one' %>
+    <%= f.input :phone_number, placeholder: '+1234567890', error: 'Phone number is mandatory, please specify one' %>
+    <%= f.input :address, error: 'Address is mandatory, please specify one' %>
+    <%= f.input :social_media_handle, placeholder: '@yourhandle', error: 'Social media handle is mandatory, please specify one' %>
+    <%= f.button :submit, 'Save Contact' %>
+  <% end %>
+</div>

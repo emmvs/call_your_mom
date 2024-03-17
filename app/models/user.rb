@@ -13,5 +13,6 @@ class User < ApplicationRecord
   has_many :media, dependent: :destroy
   has_many :reminders, dependent: :destroy
 
-  validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_PATTERN, message: "Must be lowercase letters 🙇🏼‍♀️" }
+  validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_PATTERN, message: "Must be a unique username 🌈" }
+  validates :first_name, :last_name, presence: :true
 end

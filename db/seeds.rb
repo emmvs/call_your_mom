@@ -1,44 +1,38 @@
-puts "Cleaning Database 🧼"
+puts 'Cleaning Database 🧼'
 sleep 1
-print " ."
+print ' .'
 sleep 1
-print " ."
+print ' .'
 sleep 1
-puts " ."
+puts ' .'
 sleep 1
-puts ""
+puts ''
 
 # Clear database to prevent duplicate records
-Note.destroy_all
-Interaction.destroy_all
-Contact.destroy_all
 Friendship.destroy_all
-Medium.destroy_all
-Reminder.destroy_all
-UserSetting.destroy_all
 User.destroy_all
 
-# Users
+# Create users
 emma = User.create(
-  username: "emmvs", 
-  email: "emma@test.com", 
-  password: "123456", 
-  first_name: "Emma", 
-  middle_name: "Anna Agneta", 
-  last_name: "Rünzel",
-  nickname: "Emmsi",
-  emoji: "☀️"
+  username: 'emmvs', 
+  email: 'emma@test.com', 
+  password: '123456', 
+  first_name: 'Emma', 
+  middle_name: 'Anna Agneta', 
+  last_name: 'Rünzel',
+  nickname: 'Emmsi',
+  emoji: '☀️'
 )
 
 josh = User.create(
-  username: "xxjmsxx", 
-  email: "josh@test.com", 
-  password: "123456", 
-  first_name: "Joshua", 
-  middle_name: nil, 
-  last_name: "Smith",
-  nickname: "Josh",
-  emoji: "🍰"
+  username: 'xxjmsxx', 
+  email: 'josh@test.com', 
+  password: '123456', 
+  first_name: 'Joshua', 
+  middle_name: 'Matthew', 
+  last_name: 'Smith',
+  nickname: 'Josh',
+  emoji: '🍰'
 )
 
 santi = User.create(
@@ -46,15 +40,16 @@ santi = User.create(
   email: "santi@test.com", 
   password: "123456", 
   first_name: "Santiago", 
-  middle_name: nil, 
+  middle_name: 'Matias', 
   last_name: "Sanchez",
   nickname: "Santi",
   emoji: "🐘"
 )
 
-users = User.all
+puts "Created #{User.count} Users 🤷🏼‍♂️🧑🏽‍🦱💁🏼‍♀️"
+users = User.find_each
 
-# Contacts
+# Create contacts
 users.each do |user|
   2.times do
     Contact.create!(
@@ -89,83 +84,90 @@ Contact.create!(
   user: emma
 )
 
-contacts = Contact.all
+puts "Created #{Contact.count} Contacts 📇"
 
-# Friendships
+# Create friendships
 Friendship.create!(
-    status: 0, # assuming 0: requested, 1: accepted, 2: declined
-    requested_at: Time.now,
-    responded_at: [nil, Time.now].sample,
+    status: Friendship.statuses[:requested],
+    requested_at: Time.current,
+    responded_at: [nil, Time.current].sample,
     user: josh,
     friend_id: emma.id
 )
 
 Friendship.create!(
-    status: 1, # assuming 0: requested, 1: accepted, 2: declined
-    requested_at: Time.now,
-    responded_at: [nil, Time.now].sample,
+    status: Friendship.statuses[:accepted],
+    requested_at: Time.current,
+    responded_at: [nil, Time.current].sample,
     user: santi,
     friend_id: josh.id
 )
 
 Friendship.create!(
-    status: 2, # assuming 0: requested, 1: accepted, 2: declined (for testing!! ♥️)
-    requested_at: Time.now,
-    responded_at: [nil, Time.now].sample,
+    status: Friendship.statuses[:declined],
+    requested_at: Time.current,
+    responded_at: [nil, Time.current].sample,
     user: emma,
     friend_id: santi.id
 )
 
-# Media
+puts "Created #{Friendship.count} Friendships ♥️"
+
+# Create media
 users.each do |user|
   Medium.create!(
-    name: ['Email', 'Phone Call', 'Social Media', 'In Person', 'Meme', 'Voice Message'].sample,
+    name: Medium::MEDIA_TYPES.sample,
     user: user
   )
 end
 
+puts "Created #{Medium.count} Media ✉️ ☎️ 🔮"
+
 # Interactions
+contacts = Contact.find_each
+
 contacts.each do |contact|
   Interaction.create!(
     interaction_date: Faker::Date.between(from: 2.days.ago, to: Date.today),
     user: contact.user,
-    contact: contact,
-    medium_id: Medium.last.id
+    contact:,
+    medium_id: Medium.all.pluck(:id).sample
   )
 end
 
+puts "Created #{Interaction.count} Interactions 📞"
+
 # Notes
-Interaction.all.each do |interaction|
+Interaction.find_each.each do |interaction|
   Note.create!(
     text: Faker::Lorem.sentence(word_count: 10),
-    interaction: interaction
+    interaction:
   )
 end
+
+puts "Created #{Note.count} Notes 📝"
 
 # Reminders
 contacts.each do |contact|
   Reminder.create!(
-    frequency_unit: ['days', 'weeks', 'months'].sample,
-    frequency_quantity: [1, 2, 3, 4, 5].sample,
+    frequency_unit: Reminder::FREQUENCY_UNITS.sample,
+    frequency_quantity: rand(1..5),
     done: [true, false].sample,
     reminderable: contact,
     user: contact.user
   )
 end
 
-# User Settings w/ ISO 639-1 Language Codes
+puts "Created #{Reminder.count} Reminders 🔔"
+
+# Create user settings w/ ISO 639-1 Language Codes
 users.each do |user|
   UserSetting.create!(
-    preferred_languages: ['en', 'es', 'fr', 'de', 'sv', 'mt', 'ar'].sample,
+    preferred_language: UserSetting::SUPPORTED_LOCALES.sample,
     user: user
   )
 end
 
-puts "Created #{User.count} Users 🤷🏼‍♂️🧑🏽‍🦱💁🏼‍♀️"
-puts "Created #{Contact.count} Contacts 📇"
-puts "Created #{Reminder.count} Reminders 🔔"
-puts "Created #{Interaction.count} Interactions 📞"
-puts "Created #{Note.count} Notes 📝"
-puts "Created #{Medium.count} Mediums ✉️ ☎️ 🔮"
-puts "Created #{Friendship.count} Friendships ♥️"
-puts "Seed data created successfully! 🌱"
+puts "Created #{UserSetting.count} User Settings 🔧"
+
+puts 'Seed data created successfully! 🌱'

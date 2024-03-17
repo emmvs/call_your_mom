@@ -1,5 +1,9 @@
 class Contact < ApplicationRecord
+  RELATIONSHIP_TYPES = %w[friend family colleague]
+
   belongs_to :user
+
+  has_many :interactions, dependent: :destroy
 
   validates :user_id, presence: true
   validates :name, :relationship,  presence: true

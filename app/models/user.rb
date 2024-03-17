@@ -8,8 +8,11 @@ class User < ApplicationRecord
 
   has_many :contacts, dependent: :destroy
   has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
   has_many :user_settings, dependent: :destroy
+  has_many :media, dependent: :destroy
+  has_many :reminders, dependent: :destroy
 
-  validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_PATTERN, message: "Must be lowercase letters 🙇🏼‍♀️" }
+  validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_PATTERN, message: "Must be a unique username 🌈" }
+  validates :first_name, :last_name, presence: :true
 end

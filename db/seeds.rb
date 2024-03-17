@@ -1,12 +1,12 @@
-puts "Cleaning Database 🧼"
+puts 'Cleaning Database 🧼'
 sleep 1
-print " ."
+print ' .'
 sleep 1
-print " ."
+print ' .'
 sleep 1
-puts " ."
+puts ' .'
 sleep 1
-puts ""
+puts ''
 
 # Clear database to prevent duplicate records
 Friendship.destroy_all
@@ -14,25 +14,25 @@ User.destroy_all
 
 # Create users
 emma = User.create(
-  username: "emmvs", 
-  email: "emma@test.com", 
-  password: "123456", 
-  first_name: "Emma", 
-  middle_name: "Anna Agneta", 
-  last_name: "Rünzel",
-  nickname: "Emmsi",
-  emoji: "☀️"
+  username: 'emmvs', 
+  email: 'emma@test.com', 
+  password: '123456', 
+  first_name: 'Emma', 
+  middle_name: 'Anna Agneta', 
+  last_name: 'Rünzel',
+  nickname: 'Emmsi',
+  emoji: '☀️'
 )
 
 josh = User.create(
-  username: "xxjmsxx", 
-  email: "josh@test.com", 
-  password: "123456", 
-  first_name: "Joshua", 
-  middle_name: "Matthew", 
-  last_name: "Smith",
-  nickname: "Josh",
-  emoji: "🍰"
+  username: 'xxjmsxx', 
+  email: 'josh@test.com', 
+  password: '123456', 
+  first_name: 'Joshua', 
+  middle_name: 'Matthew', 
+  last_name: 'Smith',
+  nickname: 'Josh',
+  emoji: '🍰'
 )
 
 santi = User.create(
@@ -40,7 +40,7 @@ santi = User.create(
   email: "santi@test.com", 
   password: "123456", 
   first_name: "Santiago", 
-  middle_name: nil, 
+  middle_name: 'Matias', 
   last_name: "Sanchez",
   nickname: "Santi",
   emoji: "🐘"
@@ -89,24 +89,24 @@ puts "Created #{Contact.count} Contacts 📇"
 # Create friendships
 Friendship.create!(
     status: Friendship.statuses[:requested],
-    requested_at: Time.now,
-    responded_at: [nil, Time.now].sample,
+    requested_at: Time.current,
+    responded_at: [nil, Time.current].sample,
     user: josh,
     friend_id: emma.id
 )
 
 Friendship.create!(
     status: Friendship.statuses[:accepted],
-    requested_at: Time.now,
-    responded_at: [nil, Time.now].sample,
+    requested_at: Time.current,
+    responded_at: [nil, Time.current].sample,
     user: santi,
     friend_id: josh.id
 )
 
 Friendship.create!(
     status: Friendship.statuses[:declined],
-    requested_at: Time.now,
-    responded_at: [nil, Time.now].sample,
+    requested_at: Time.current,
+    responded_at: [nil, Time.current].sample,
     user: emma,
     friend_id: santi.id
 )
@@ -130,7 +130,7 @@ contacts.each do |contact|
   Interaction.create!(
     interaction_date: Faker::Date.between(from: 2.days.ago, to: Date.today),
     user: contact.user,
-    contact: contact,
+    contact:,
     medium_id: Medium.all.pluck(:id).sample
   )
 end
@@ -141,7 +141,7 @@ puts "Created #{Interaction.count} Interactions 📞"
 Interaction.find_each.each do |interaction|
   Note.create!(
     text: Faker::Lorem.sentence(word_count: 10),
-    interaction: interaction
+    interaction:
   )
 end
 
@@ -163,11 +163,11 @@ puts "Created #{Reminder.count} Reminders 🔔"
 # Create user settings w/ ISO 639-1 Language Codes
 users.each do |user|
   UserSetting.create!(
-    preferred_languages: ['en', 'es', 'fr', 'de', 'sv', 'mt', 'ar'].sample,
+    preferred_language: UserSetting::SUPPORTED_LOCALES.sample,
     user: user
   )
 end
 
 puts "Created #{UserSetting.count} User Settings 🔧"
 
-puts "Seed data created successfully! 🌱"
+puts 'Seed data created successfully! 🌱'

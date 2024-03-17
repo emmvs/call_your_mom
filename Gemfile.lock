@@ -115,6 +115,13 @@ GEM
       railties (>= 3.2)
     erubi (1.12.0)
     execjs (2.9.1)
+    factory_bot (6.4.6)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
+    faker (3.2.3)
+      i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     font-awesome-sass (6.4.2)
       sassc (~> 2.0)
@@ -129,9 +136,6 @@ GEM
     irb (1.8.1)
       rdoc
       reline (>= 0.3.8)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -203,7 +207,6 @@ GEM
     rake (13.0.6)
     rdoc (6.5.0)
       psych (>= 4.0.0)
-    redis (4.8.1)
     regexp_parser (2.8.2)
     reline (0.3.9)
       io-console (~> 0.5)
@@ -229,6 +232,8 @@ GEM
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
     rubyzip (2.3.2)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -281,21 +286,22 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  bcrypt (~> 3.1.7)
   bootsnap
   bootstrap (~> 5.2)
   capybara
   debug
   devise
   dotenv-rails
+  factory_bot_rails
+  faker
   font-awesome-sass (~> 6.1)
   importmap-rails
-  jbuilder
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8)
-  redis (~> 4.0)
   rspec-rails
-  sassc-rails
+  sass-rails
   selenium-webdriver
   simple_form!
   sprockets-rails

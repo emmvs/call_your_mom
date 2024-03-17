@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_09_165235) do
   enable_extension "plpgsql"
 
   create_table "contact_media", force: :cascade do |t|
-    t.string "rank"
+    t.integer "rank"
     t.bigint "contact_id", null: false
     t.bigint "medium_id", null: false
     t.datetime "created_at", null: false
@@ -91,7 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_09_165235) do
   end
 
   create_table "user_settings", force: :cascade do |t|
-    t.string "preferred_languages"
+    t.string "preferred_language", default: "en"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

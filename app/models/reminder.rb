@@ -3,4 +3,6 @@ class Reminder < ApplicationRecord
 
   belongs_to :reminderable, polymorphic: true
   belongs_to :user
+
+  validates :frequency_unit, inclusion: { in: FREQUENCY_UNITS, message: "%{value.capitalize} is not a valid frequency ☝🏻" }
 end

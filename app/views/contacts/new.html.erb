@@ -1,11 +1,33 @@
 <div class="container m-5 p-5">
   <%= simple_form_for @contact do |f| %>
-    <%= f.input :name, label: 'Name of Your Person', error: 'Name is mandatory, please specify one' %>
-    <%= f.input :relationship, collection: ['friend', 'family', 'colleague'], prompt: 'Select Relationship', error: 'Relationship is mandatory, please specify one' %>
-    <%= f.input :email, as: :email, placeholder: 'user@domain.com', error: 'A valid email is mandatory, please specify one' %>
-    <%= f.input :phone_number, placeholder: '+1234567890', error: 'Phone number is mandatory, please specify one' %>
-    <%= f.input :address, error: 'Address is mandatory, please specify one' %>
-    <%= f.input :social_media_handle, placeholder: '@yourhandle', error: 'Social media handle is mandatory, please specify one' %>
-    <%= f.button :submit, 'Save Contact' %>
+    <%= f.input :name, 
+                label: t('helpers.label.contact.name'), 
+                error: t('activerecord.errors.models.contact.attributes.name.blank') %>
+
+    <%= f.input :relationship,
+                label: t('helpers.label.contact.relationship'), 
+                collection: Contact.relationship_options.map { |key| [t("activerecord.attributes.contact.relationship_options.#{key}"), key] }, 
+                prompt: t('helpers.label.contact.relationship'), 
+                error: t('activerecord.errors.models.contact.attributes.relationship.blank') %>
+
+    <%= f.input :email, 
+                as: :email, 
+                placeholder: 'user@domain.com', 
+                error: t('activerecord.errors.models.contact.attributes.email.blank') %>
+
+    <%= f.input :phone_number, 
+                label: t('helpers.label.contact.phone_number'), 
+                placeholder: '+1234567890', 
+                error: t('activerecord.errors.models.contact.attributes.phone_number.blank') %>
+
+    <%= f.input :address, 
+                label: t('helpers.label.contact.address'), 
+                error: t('activerecord.errors.models.contact.attributes.address.blank') %>
+
+    <%= f.input :social_media_handle, 
+                placeholder: '@yourhandle', 
+                error: t('activerecord.errors.models.contact.attributes.social_media_handle.blank') %>
+
+    <%= f.button :submit, t('submit.contact.save') %>
   <% end %>
 </div>

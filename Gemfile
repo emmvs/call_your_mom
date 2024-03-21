@@ -24,7 +24,6 @@ gem 'bootstrap', '~> 5.2'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 6.1'
 gem 'simple_form', github: 'heartcombo/simple_form'
-gem 'geocoder'
 
 # Authentication and security
 gem 'bcrypt', '~> 3.1.7' # Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]

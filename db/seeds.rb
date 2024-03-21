@@ -2,6 +2,7 @@ puts 'Cleaning Database 🧼'
 
 # Clear database to prevent duplicate records
 Friendship.destroy_all
+UserSetting.destroy_all
 User.destroy_all
 
 # Create users
@@ -32,7 +33,7 @@ santi = User.create(
   email: "santi@test.com", 
   password: "123456", 
   first_name: "Santiago", 
-  middle_name: 'Matias', 
+  middle_name: nil, 
   last_name: "Sanchez",
   nickname: "Santi",
   emoji: "🐘"
@@ -41,28 +42,14 @@ santi = User.create(
 puts "Created #{User.count} Users 🤷🏼‍♂️🧑🏽‍🦱💁🏼‍♀️"
 
 # Creating UserSettings
-UserSetting.create(user: emma, preferred_language: 'en')
-UserSetting.create(user: josh, preferred_language: 'en')
-UserSetting.create(user: santi, preferred_language: 'en')
+UserSetting.create(user: emma, preferred_language: 'sv')
+UserSetting.create(user: josh, preferred_language: 'de')
+UserSetting.create(user: santi, preferred_language: 'es')
 
 puts "Created #{UserSetting.count} User Settings ☀️"
 users = User.find_each
 
-# Create contacts
-users.each do |user|
-  2.times do
-    Contact.create!(
-      name: Faker::Name.name,
-      relationship: ['friend', 'family', 'colleague'].sample,
-      email: Faker::Internet.email,
-      phone_number: Faker::PhoneNumber.cell_phone,
-      address: Faker::Address.full_address,
-      social_media_handle: "@#{Faker::Internet.username}",
-      user: user
-    )
-  end
-end
-
+# Emmas Contacts
 Contact.create!(
   name: 'Cindy',
   relationship: 'friend',
@@ -74,6 +61,16 @@ Contact.create!(
 )
 
 Contact.create!(
+  name: 'Tinka',
+  relationship: 'friend',
+  email: 'katinka.stoebbe@gmx.de',
+  phone_number: '+49 172 9710096',
+  address: 'Lothringer Str 19, 09120 Chemnitz',
+  social_media_handle: 'tinka_stoebbe',
+  user: emma
+)
+
+Contact.create!(
   name: 'Mamma',
   relationship: 'family',
   email: 'sylvia@ruenzel.de',
@@ -81,6 +78,38 @@ Contact.create!(
   address: 'Buchenweg 97, 22926 Ahrensburg',
   social_media_handle: 'kramtomat',
   user: emma
+)
+
+# Santis Contacts
+Contact.create!(
+  name: 'Mitchi',
+  relationship: 'friend',
+  email: 'michelle@lewagon.com',
+  phone_number: '+49 172 9710096',
+  address: 'Santis house',
+  social_media_handle: 'mich_rodd',
+  user: santi
+  )
+  
+# Joshs Contacts
+Contact.create!(
+  name: 'Santi',
+  relationship: 'friend',
+  email: 'santi@lewagon.com',
+  phone_number: '+49 172 9710096',
+  address: 'Santis house',
+  social_media_handle: 'santiagooo',
+  user: josh
+)
+
+Contact.create!(
+  name: 'Emma',
+  relationship: 'friend',
+  email: 'emma@ruenzel.de',
+  phone_number: '+49 157 85519243',
+  address: 'Altenbraker Straße 26, 12051 Berlin, Germany',
+  social_media_handle: 'emmvs',
+  user: josh
 )
 
 puts "Created #{Contact.count} Contacts 📇"

@@ -2,6 +2,6 @@
   <h2>
     <%= greeting_for_current_user %>
   </h2>
-  <%= link_to 'Add Contact', new_contact_path, class: "btn btn-primary" %>
-  <%= link_to 'My Contacts', contacts_path, class: "btn btn-secondary" %>
+  <%= link_to t('buttons.add_contact'), new_contact_path, class: "btn btn-primary" %>
+  <%= link_to t('buttons.my_contacts'), contacts_path, class: "btn btn-secondary" %>
 </div>

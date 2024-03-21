@@ -1,12 +1,4 @@
 puts 'Cleaning Database 🧼'
-sleep 1
-print ' .'
-sleep 1
-print ' .'
-sleep 1
-puts ' .'
-sleep 1
-puts ''
 
 # Clear database to prevent duplicate records
 Friendship.destroy_all
@@ -47,6 +39,13 @@ santi = User.create(
 )
 
 puts "Created #{User.count} Users 🤷🏼‍♂️🧑🏽‍🦱💁🏼‍♀️"
+
+# Creating UserSettings
+UserSetting.create(user: emma, preferred_language: 'en')
+UserSetting.create(user: josh, preferred_language: 'en')
+UserSetting.create(user: santi, preferred_language: 'en')
+
+puts "Created #{UserSetting.count} User Settings ☀️"
 users = User.find_each
 
 # Create contacts

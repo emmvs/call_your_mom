@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_time_zone, if: :user_signed_in?
+  before_action :set_locale
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -20,4 +21,12 @@ class ApplicationController < ActionController::Base
   def set_time_zone
     Time.zone = current_user.user_setting.time_zone if current_user.user_setting&.time_zone.present?
   end
+
+  def set_locale
+    if user_signed_in?
+      I18n.locale = current_user.user_setting.preferred_language || I18n.default_locale
+    else
+      I18n.locale = I18n.default_locale
+    end
+  end  
 end

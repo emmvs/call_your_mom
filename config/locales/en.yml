@@ -30,4 +30,56 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  navbar:
+    home: "Home"
+    messages: "Messages"
+    action: "Action"
+    another_action: "Another action"
+    log_out: "Log out"
+    login: "Login"
+  greetings:
+    morning: 'Good Morning, '
+    day: 'Good Day, '
+    evening: 'Good Evening, '
+    night: 'Good Night, '
+    sunshine: 'Hello, Sunshine! '
+  buttons:
+    add_contact: "Add Contact"
+    my_contacts: "My Contacts"
+  contacts:
+    title: "Contacts 📇"
+  helpers:
+    label:
+      contact:
+        name: 'Name of Your Person'
+        relationship: 'How do you know each other?'
+        email: 'Email'
+        phone_number: 'Phone Number'
+        address: 'Address'
+        social_media_handle: 'Social Media Handle'
+  activerecord:
+    attributes:
+      contact:
+        relationship_options:
+          friend: 'Friend'
+          family: 'Family'
+          colleague: 'Colleague'
+    errors:
+      models:
+        contact:
+          attributes:
+            name:
+              blank: 'Name is mandatory, please specify one'
+            relationship:
+              blank: 'Relationship is mandatory, please specify one'
+            email:
+              blank: 'A valid email is mandatory, please specify one'
+            phone_number:
+              blank: 'Phone number is mandatory, please specify one'
+            address:
+              blank: 'Address is mandatory, please specify one'
+            social_media_handle:
+              blank: 'Social media handle is mandatory, please specify one'
+  submit:
+    contact:
+      save: 'Save Contact'

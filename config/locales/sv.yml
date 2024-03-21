@@ -1,0 +1,54 @@
+sv:
+  navbar:
+    home: "Hem"
+    messages: "Meddelanden"
+    action: "Åtgärd"
+    another_action: "En annan åtgärd"
+    log_out: "Logga ut"
+    login: "Logga in"
+  greetings:
+    morning: 'God morgon, '
+    day: 'God dag, '
+    evening: 'God kväll, '
+    night: 'God natt, '
+    sunshine: 'Hej, solstråle! '
+  buttons:
+    add_contact: "Lägg till kontakt"
+    my_contacts: "Mina kontakter"
+  contacts:
+    title: "Kontakter 📇"
+  helpers:
+    label:
+      contact:
+        name: 'Namn på din person'
+        relationship: 'Relation'
+        email: 'E-post'
+        phone_number: 'Telefonnummer'
+        address: 'Adress'
+        social_media_handle: 'Sociala mediehandtag'
+  activerecord:
+    attributes:
+      contact:
+        relationship_options:
+          friend: 'Vän'
+          family: 'Familj'
+          colleague: 'Kollega'
+    errors:
+      models:
+        contact:
+          attributes:
+            name:
+              blank: 'Namn krävs, vänligen ange'
+            relationship:
+              blank: 'Relation krävs, vänligen ange'
+            email:
+              blank: 'En giltig e-post krävs, vänligen ange'
+            phone_number:
+              blank: 'Telefonnummer krävs, vänligen ange'
+            address:
+              blank: 'Adress krävs, vänligen ange'
+            social_media_handle:
+              blank: 'Sociala mediehandtag krävs, vänligen ange'
+  submit:
+    contact:
+      save: 'Spara kontakt'

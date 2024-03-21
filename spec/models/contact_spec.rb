@@ -1,5 +1,3 @@
-require "rails_helper.rb"
-
 RSpec.describe Contact, type: :model do
   let(:user) { create(:user) }
 

@@ -3,18 +3,19 @@ module DashboardHelper
     if user_signed_in?
       "#{time_based_greeting}#{current_user.nickname} #{time_based_emoji}"
     else
-      "Hello, Sunshine! #{time_based_emoji}"
+      "#{t('greetings.sunshine')}#{time_based_emoji}"
     end
   end
 
   
   def time_based_greeting
-    case Time.current.in_time_zone(user_time_zone).hour
-    when 0...12 then 'Good Morning, '
-    when 12...18 then 'Good Day, '
-    when 18...22 then 'Good Evening, '
-    else 'Good Night, '
+    time_of_day = case Time.current.in_time_zone(user_time_zone).hour
+    when 0...12 then 'morning'
+    when 12...18 then 'day'
+    when 18...22 then 'evening'
+    else 'night'
     end
+    t("greetings.#{time_of_day}")
   end
   
   def time_based_emoji

@@ -6,10 +6,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
 
+  has_one :user_setting, dependent: :destroy
+
   has_many :contacts, dependent: :destroy
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
-  has_many :user_settings, dependent: :destroy
   has_many :media, dependent: :destroy
   has_many :reminders, dependent: :destroy
 

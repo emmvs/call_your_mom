@@ -2,7 +2,6 @@ puts 'Cleaning Database 🧼'
 
 # Clear database
 Friendship.destroy_all
-UserSetting.destroy_all
 User.destroy_all
 
 # Create users
@@ -18,22 +17,22 @@ emma = User.create(
 )
 
 josh = User.create(
-  username: 'xxjmsxx', 
-  email: 'josh@test.com', 
-  password: '123456', 
-  first_name: 'Joshua', 
-  middle_name: 'Matthew', 
+  username: 'xxjmsxx',
+  email: 'josh@test.com',
+  password: '123456',
+  first_name: 'Joshua',
+  middle_name: 'Matthew',
   last_name: 'Smith',
   nickname: 'Josh',
   emoji: '🍰'
 )
 
 santi = User.create(
-  username: "santiagosan93", 
-  email: "santi@test.com", 
-  password: "123123", 
-  first_name: "Santiago", 
-  middle_name: nil, 
+  username: "santiagosan93",
+  email: "santi@test.com",
+  password: "123123",
+  first_name: "Santiago",
+  middle_name: nil,
   last_name: "Sanchez",
   nickname: "Santi",
   emoji: "🐘"
@@ -187,15 +186,5 @@ contacts.each do |contact|
 end
 
 puts "Created #{Reminder.count} Reminders 🔔"
-
-# Create user settings w/ ISO 639-1 Language Codes
-users.each do |user|
-  UserSetting.create!(
-    preferred_language: UserSetting::SUPPORTED_LOCALES.sample,
-    user: user
-  )
-end
-
-puts "Created #{UserSetting.count} User Settings 🔧"
 
 puts 'Seed data created successfully! 🌱'

@@ -43,6 +43,7 @@ end
 
 group :development do
   gem 'web-console' # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'rubocop', require: false
 end
 
 group :test do

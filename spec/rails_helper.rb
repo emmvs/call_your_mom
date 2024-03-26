@@ -62,6 +62,13 @@ RSpec.configure do |config|
   # Requests
   config.include Devise::Test::IntegrationHelpers, type: :request
 
+  # For login_as method to work
+  config.include Warden::Test::Helpers, type: :system
+
+  config.after(type: :system) do
+    Warden.test_reset!
+  end
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 

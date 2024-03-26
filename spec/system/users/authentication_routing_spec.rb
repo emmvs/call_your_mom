@@ -25,7 +25,7 @@ RSpec.feature "Authentication & Sign In Process", type: :feature do
       scenario "are redirected to the dashboard" do
         visit root_path
 
-        expect(page).to have_content('Hello')
+        expect(page).to have_content('Home')
       end
     
       scenario "see a success alert" do

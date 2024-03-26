@@ -1,13 +1,14 @@
 <div class="container m-5 p-5">
+  <h3><%= t('buttons.add_contact') %></h3>
   <%= simple_form_for @contact do |f| %>
     <%= f.input :name, 
                 label: t('helpers.label.contact.name'), 
                 error: t('activerecord.errors.models.contact.attributes.name.blank') %>
 
-    <%= f.input :relationship,
+    <%= f.input :relationship, 
                 label: t('helpers.label.contact.relationship'), 
-                collection: Contact.relationship_options.map { |key| [t("activerecord.attributes.contact.relationship_options.#{key}"), key] }, 
-                prompt: t('helpers.label.contact.relationship'), 
+                collection: Contact::RELATIONSHIP_TYPES.map { |type| [t("contacts.relationships.#{type}"), type] }, 
+                prompt: 'Choose a relationship',
                 error: t('activerecord.errors.models.contact.attributes.relationship.blank') %>
 
     <%= f.input :email, 

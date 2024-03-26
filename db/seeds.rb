@@ -1,6 +1,6 @@
 puts 'Cleaning Database 🧼'
 
-# Clear database to prevent duplicate records
+# Clear database
 Friendship.destroy_all
 UserSetting.destroy_all
 User.destroy_all
@@ -31,7 +31,7 @@ josh = User.create(
 santi = User.create(
   username: "santiagosan93", 
   email: "santi@test.com", 
-  password: "123456", 
+  password: "123123", 
   first_name: "Santiago", 
   middle_name: nil, 
   last_name: "Sanchez",

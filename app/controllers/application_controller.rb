@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    preferred_language = user_signed_in? ? current_user.user_setting&.preferred_language : nil
+    preferred_language = current_user&.user_setting&.preferred_language
     I18n.locale = preferred_language || I18n.default_locale
   end
 end

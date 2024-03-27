@@ -1,7 +1,7 @@
 # Session tests verify the server's handling of user sessions through direct requests,
 # while system tests simulate real user interactions with the app's UI & Backend
 RSpec.describe "User Sessions with Devise", type: :request do
-  let(:user) { FactoryBot.create(:user, password: 'password', password_confirmation: 'password') }
+  let(:user) { create(:user, password: 'password', password_confirmation: 'password') }
 
   describe "POST /users/sign_in" do
     context "with valid credentials" do

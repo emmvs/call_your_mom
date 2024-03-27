@@ -1,45 +1,28 @@
 RSpec.feature "Contacts Routing", type: :feature do
   let(:user) { create(:user) }
-  let!(:contact) { create(:contact, user: user) }
+  let!(:contact) { create(:contact, user:) }
 
-  context "👨🏻‍💻 Unauthenticated users" do
-    scenario "cannot access contacts index" do
-      visit contacts_path
-      expect(current_path).to eq(new_user_session_path)
-    end
-
-    scenario "cannot access new contact page" do
-      visit new_contact_path
-      expect(current_path).to eq(new_user_session_path)
-    end
-
-    scenario "cannot access a contact's show page" do
-      visit contact_path(contact)
-      expect(current_path).to eq(new_user_session_path)
-    end
+  scenario "Unauthenticated users are redirected to login" do
+    verify_redirection(contacts_path)
+    verify_redirection(new_contact_path)
+    verify_redirection(contact_path(contact))
   end
 
-  context "👩🏼‍💻 Authenticated users" do
-    before do
-      login_as(user, scope: :user)
-    end
+  scenario "Authenticated users can access contacts pages" do
+    login_as(user, scope: :user)
+    verify_access(contacts_path, 'Contacts 📇')
+    verify_access(new_contact_path, 'Name of Your Person')
+    verify_access(contact_path(contact), contact.name)
+  end
 
-    scenario "can access contacts index" do
-      visit contacts_path
-      expect(current_path).to eq(contacts_path)
-      expect(page).to have_content('Contacts 📇')
-    end
+  def verify_redirection(path)
+    visit path
+    expect(current_path).to eq(new_user_session_path)
+  end
 
-    scenario "can access new contact page" do
-      visit new_contact_path
-      expect(current_path).to eq(new_contact_path)
-      expect(page).to have_content('Name of Your Person')
-    end
-
-    scenario "can access a contact's show page" do
-      visit contact_path(contact)
-      expect(current_path).to eq(contact_path(contact))
-      expect(page).to have_content(contact.name)
-    end
+  def verify_access(path, content)
+    visit path
+    expect(current_path).to eq(path)
+    expect(page).to have_content(content)
   end
 end

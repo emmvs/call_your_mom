@@ -1,44 +1,28 @@
 RSpec.feature "Authentication & Sign In Process", type: :feature do
-  let(:password) { "123123" }
   let(:user) { create(:user) }
 
-  context "👨🏻‍💻 Users that are not logged in" do
-    scenario "are directed to the home page" do
-      # Preparation
-      visit root_path
+  scenario "Users not logged in are directed to the home page" do
+    visit root_path
+    expect(page).to have_content('Welcome home!!!')
+  end
 
-      # Assertion
-      expect(page).to have_content('Welcome home!!!')
+  feature "Logging in" do
+    scenario "Successfully logs in with correct password" do
+      log_in_as(user, '123123')
+      expect(page).to have_content('Signed in successfully.')
+      expect(page).to have_content('Home')
+    end
+
+    scenario "Fails to log in with incorrect password" do
+      log_in_as(user, 'wrongpassword')
+      expect(page).to have_content 'Invalid Username or password.'
     end
   end
-  
-  context "👩🏼‍💻 Users that are trying to log in" do
-    before(:each) do
-      visit new_user_session_path
 
-      fill_in 'user_username', with: user.username
-      fill_in 'user_password', with: password
-      click_button 'Log in'
-    end
-  
-    context "when the user password is right" do
-      scenario "are redirected to the dashboard" do
-        visit root_path
-
-        expect(page).to have_content('Home')
-      end
-    
-      scenario "see a success alert" do
-        expect(page).to have_content 'Signed in successfully.'
-      end
-    end
-  
-    context "when the password is wrong" do
-      let(:password) { "lalalalalalalla" }
-
-      scenario "are not able to sign in" do
-        expect(page).to have_content 'Invalid Username or password.'
-      end
-    end
+  def log_in_as(user, password)
+    visit new_user_session_path
+    fill_in 'user_username', with: user.username
+    fill_in 'user_password', with: password
+    click_button 'Log in'
   end
 end

@@ -1,38 +1,30 @@
 RSpec.describe "Contact creation", type: :system do
-  let(:english_user) { FactoryBot.create(:user, user_setting: FactoryBot.create(:user_setting, preferred_language: 'en')) }
-  let(:german_user) { FactoryBot.create(:user, user_setting: FactoryBot.create(:user_setting, preferred_language: 'de')) }
-  let(:spanish_user) { FactoryBot.create(:user, user_setting: FactoryBot.create(:user_setting, preferred_language: 'es')) }
-  let(:swedish_user) { FactoryBot.create(:user, user_setting: FactoryBot.create(:user_setting, preferred_language: 'sv')) }
-
   before do
-    driven_by(:rack_test) # or :selenium if using a headless browser for JavaScript testing
+    driven_by(:rack_test)
   end
 
-  it 'displays the form in English' do
-    login_as(english_user, scope: :user)
-    visit new_contact_path
-    expect(page).to have_content('Add Contact')
-    expect(page).to have_button('Save Contact')
+  [
+    { user: 'english_user', content: 'Add Contact', button: 'Save Contact' },
+    { user: 'german_user', content: 'Kontakt hinzufügen', button: 'Kontakt speichern' },
+    { user: 'spanish_user', content: 'Añadir contacto', button: 'Guardar contacto' },
+    { user: 'swedish_user', content: 'Lägg till kontakt', button: 'Spara kontakt' }
+  ].each do |example|
+    it "displays the form in #{example[:user]}'s preferred language" do
+      user = send(example[:user])
+      login_as(user, scope: :user)
+      visit new_contact_path
+
+      expect(page).to have_content(example[:content])
+      expect(page).to have_button(example[:button])
+    end
   end
 
-  it 'displays the form in German' do
-    login_as(german_user, scope: :user)
-    visit new_contact_path
-    expect(page).to have_content('Kontakt hinzufügen')
-    expect(page).to have_button('Kontakt speichern')
+  def user_setting_with_preferred_language(preferred_language)
+    FactoryBot.create(:user_setting, preferred_language:)
   end
 
-  it 'displays the form in Spanish' do
-    login_as(spanish_user, scope: :user)
-    visit new_contact_path
-    expect(page).to have_content('Añadir contacto')
-    expect(page).to have_button('Guardar contacto')
-  end
-
-  it 'displays the form in Swedish' do
-    login_as(swedish_user, scope: :user)
-    visit new_contact_path
-    expect(page).to have_content('Lägg till kontakt')
-    expect(page).to have_button('Spara kontakt')
-  end
+  let(:english_user) { FactoryBot.create(:user, user_setting: user_setting_with_preferred_language('en')) }
+  let(:german_user) { FactoryBot.create(:user, user_setting: user_setting_with_preferred_language('de')) }
+  let(:spanish_user) { FactoryBot.create(:user, user_setting: user_setting_with_preferred_language('es')) }
+  let(:swedish_user) { FactoryBot.create(:user, user_setting: user_setting_with_preferred_language('sv')) }
 end

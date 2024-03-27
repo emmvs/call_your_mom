@@ -1,14 +1,6 @@
 puts 'Cleaning Database 🧼'
-sleep 1
-print ' .'
-sleep 1
-print ' .'
-sleep 1
-puts ' .'
-sleep 1
-puts ''
 
-# Clear database to prevent duplicate records
+# Clear database
 Friendship.destroy_all
 User.destroy_all
 
@@ -25,45 +17,38 @@ emma = User.create(
 )
 
 josh = User.create(
-  username: 'xxjmsxx', 
-  email: 'josh@test.com', 
-  password: '123456', 
-  first_name: 'Joshua', 
-  middle_name: 'Matthew', 
+  username: 'xxjmsxx',
+  email: 'josh@test.com',
+  password: '123456',
+  first_name: 'Joshua',
+  middle_name: 'Matthew',
   last_name: 'Smith',
   nickname: 'Josh',
   emoji: '🍰'
 )
 
 santi = User.create(
-  username: "santiagosan93", 
-  email: "santi@test.com", 
-  password: "123456", 
-  first_name: "Santiago", 
-  middle_name: 'Matias', 
+  username: "santiagosan93",
+  email: "santi@test.com",
+  password: "123123",
+  first_name: "Santiago",
+  middle_name: nil,
   last_name: "Sanchez",
   nickname: "Santi",
   emoji: "🐘"
 )
 
 puts "Created #{User.count} Users 🤷🏼‍♂️🧑🏽‍🦱💁🏼‍♀️"
+
+# Creating UserSettings
+UserSetting.create(user: emma, preferred_language: 'sv')
+UserSetting.create(user: josh, preferred_language: 'de')
+UserSetting.create(user: santi, preferred_language: 'es')
+
+puts "Created #{UserSetting.count} User Settings ☀️"
 users = User.find_each
 
-# Create contacts
-users.each do |user|
-  2.times do
-    Contact.create!(
-      name: Faker::Name.name,
-      relationship: ['friend', 'family', 'colleague'].sample,
-      email: Faker::Internet.email,
-      phone_number: Faker::PhoneNumber.cell_phone,
-      address: Faker::Address.full_address,
-      social_media_handle: "@#{Faker::Internet.username}",
-      user: user
-    )
-  end
-end
-
+# Emmas Contacts
 Contact.create!(
   name: 'Cindy',
   relationship: 'friend',
@@ -75,6 +60,16 @@ Contact.create!(
 )
 
 Contact.create!(
+  name: 'Tinka',
+  relationship: 'friend',
+  email: 'katinka.stoebbe@gmx.de',
+  phone_number: '+49 172 9710096',
+  address: 'Lothringer Str 19, 09120 Chemnitz',
+  social_media_handle: 'tinka_stoebbe',
+  user: emma
+)
+
+Contact.create!(
   name: 'Mamma',
   relationship: 'family',
   email: 'sylvia@ruenzel.de',
@@ -82,6 +77,38 @@ Contact.create!(
   address: 'Buchenweg 97, 22926 Ahrensburg',
   social_media_handle: 'kramtomat',
   user: emma
+)
+
+# Santis Contacts
+Contact.create!(
+  name: 'Mitchi',
+  relationship: 'friend',
+  email: 'michelle@lewagon.com',
+  phone_number: '+49 172 9710096',
+  address: 'Santis house',
+  social_media_handle: 'mich_rodd',
+  user: santi
+  )
+  
+# Joshs Contacts
+Contact.create!(
+  name: 'Santi',
+  relationship: 'friend',
+  email: 'santi@lewagon.com',
+  phone_number: '+49 172 9710096',
+  address: 'Santis house',
+  social_media_handle: 'santiagooo',
+  user: josh
+)
+
+Contact.create!(
+  name: 'Emma',
+  relationship: 'friend',
+  email: 'emma@ruenzel.de',
+  phone_number: '+49 157 85519243',
+  address: 'Altenbraker Straße 26, 12051 Berlin, Germany',
+  social_media_handle: 'emmvs',
+  user: josh
 )
 
 puts "Created #{Contact.count} Contacts 📇"
@@ -159,15 +186,5 @@ contacts.each do |contact|
 end
 
 puts "Created #{Reminder.count} Reminders 🔔"
-
-# Create user settings w/ ISO 639-1 Language Codes
-users.each do |user|
-  UserSetting.create!(
-    preferred_language: UserSetting::SUPPORTED_LOCALES.sample,
-    user: user
-  )
-end
-
-puts "Created #{UserSetting.count} User Settings 🔧"
 
 puts 'Seed data created successfully! 🌱'

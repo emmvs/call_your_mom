@@ -1,0 +1,54 @@
+de:
+  navbar:
+    home: "Startseite"
+    messages: "Nachrichten"
+    action: "Aktion"
+    another_action: "Eine andere Aktion"
+    log_out: "Abmelden"
+    login: "Anmelden"
+  greetings:
+    morning: 'Guten Morgen, '
+    day: 'Guten Tag, '
+    evening: 'Guten Abend, '
+    night: 'Gute Nacht, '
+    sunshine: 'Hallo, Sonnenschein! '
+  buttons:
+    add_contact: "Kontakt hinzufügen"
+    my_contacts: "Meine Kontakte"
+  contacts:
+    title: "Kontakte 📇"
+  helpers:
+    label:
+      contact:
+        name: 'Name deiner Person'
+        relationship: 'Wie kennt ihr euch?'
+        email: 'E-Mail'
+        phone_number: 'Telefonnummer'
+        address: 'Adresse'
+        social_media_handle: 'Social-Media-Handle'
+  activerecord:
+    attributes:
+      contact:
+        relationship_options:
+          friend: 'Freund*in'
+          family: 'Familie'
+          colleague: 'Kollege*in'
+    errors:
+      models:
+        contact:
+          attributes:
+            name:
+              blank: 'Name ist erforderlich, bitte angeben'
+            relationship:
+              blank: 'Beziehung ist erforderlich, bitte angeben'
+            email:
+              blank: 'Eine gültige E-Mail ist erforderlich, bitte angeben'
+            phone_number:
+              blank: 'Telefonnummer ist erforderlich, bitte angeben'
+            address:
+              blank: 'Adresse ist erforderlich, bitte angeben'
+            social_media_handle:
+              blank: 'Social-Media-Handle ist erforderlich, bitte angeben'
+  submit:
+    contact:
+      save: 'Kontakt speichern'

@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe User, type: :model do
   it 'is valid with all required attributes' do
     user = build(:user)

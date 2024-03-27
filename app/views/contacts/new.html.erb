@@ -1,0 +1,34 @@
+<div class="container m-5 p-5">
+  <h3><%= t('buttons.add_contact') %></h3>
+  <%= simple_form_for @contact do |f| %>
+    <%= f.input :name, 
+                label: t('helpers.label.contact.name'), 
+                error: t('activerecord.errors.models.contact.attributes.name.blank') %>
+
+    <%= f.input :relationship, 
+                label: t('helpers.label.contact.relationship'), 
+                collection: Contact::RELATIONSHIP_TYPES.map { |type| [t("contacts.relationships.#{type}"), type] }, 
+                prompt: 'Choose a relationship',
+                error: t('activerecord.errors.models.contact.attributes.relationship.blank') %>
+
+    <%= f.input :email, 
+                as: :email, 
+                placeholder: 'user@domain.com', 
+                error: t('activerecord.errors.models.contact.attributes.email.blank') %>
+
+    <%= f.input :phone_number, 
+                label: t('helpers.label.contact.phone_number'), 
+                placeholder: '+1234567890', 
+                error: t('activerecord.errors.models.contact.attributes.phone_number.blank') %>
+
+    <%= f.input :address, 
+                label: t('helpers.label.contact.address'), 
+                error: t('activerecord.errors.models.contact.attributes.address.blank') %>
+
+    <%= f.input :social_media_handle, 
+                placeholder: '@yourhandle', 
+                error: t('activerecord.errors.models.contact.attributes.social_media_handle.blank') %>
+
+    <%= f.button :submit, t('submit.contact.save') %>
+  <% end %>
+</div>

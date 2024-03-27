@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     root 'pages#dashboard', as: :authenticated_root
   end
   root "pages#home"
+
+  resources :contacts, only: %i[new create index show]
 end

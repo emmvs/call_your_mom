@@ -1,0 +1,6 @@
+<div class="container mt-5">
+  <h2><%= @contact.name %></h2>
+  <h4><%= @contact.address %></h4>
+  <h4><%= @contact.phone_number %></h4>
+  <h4><%= @contact.social_media_handle.start_with?('@') ? @contact.social_media_handle : "@#{@contact.social_media_handle}" %></h4>
+</div>

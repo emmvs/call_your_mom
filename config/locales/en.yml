@@ -30,6 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  date:
+    order: [ 'day', 'month', 'year' ]
   navbar:
     home: "Home"
     messages: "Messages"
@@ -46,8 +48,11 @@ en:
   buttons:
     add_contact: "Add Contact"
     my_contacts: "My Contacts"
+    add_interaction: "Add Interaction"
   contacts:
     title: "Contacts 📇"
+    last_interaction: "Last contacted"
+    past_interaction: "Previous interactions"
   helpers:
     label:
       contact:
@@ -57,6 +62,10 @@ en:
         phone_number: 'Phone Number'
         address: 'Address'
         social_media_handle: 'Social Media Handle'
+      interaction:
+        interaction: 'Date'
+        medium: 'Communication Medium'
+        notes: 'Notes'
   activerecord:
     attributes:
       contact:
@@ -80,6 +89,14 @@ en:
               blank: 'Address is mandatory, please specify one'
             social_media_handle:
               blank: 'Social media handle is mandatory, please specify one'
+        interaction:
+          attributes:
+            date:
+              blank: 'Date is mandatory, please specify one'
+            medium:
+              blank: 'Communication medium is mandatory, please specify one'
   submit:
     contact:
       save: 'Save Contact'
+    interaction:
+      save: 'Save Interaction'

@@ -1,4 +1,6 @@
 sv:
+  date:
+    order: [ 'day', 'month', 'year' ]
   navbar:
     home: "Hem"
     messages: "Meddelanden"
@@ -15,8 +17,11 @@ sv:
   buttons:
     add_contact: "Lägg till kontakt"
     my_contacts: "Mina kontakter"
+    add_interaction: "Lägg till interaktion"
   contacts:
     title: "Kontakter 📇"
+    last_interaction: "Senast kontaktad"
+    past_interaction: "Tidigare interaktioner"
   helpers:
     label:
       contact:
@@ -26,6 +31,10 @@ sv:
         phone_number: 'Telefonnummer'
         address: 'Adress'
         social_media_handle: 'Sociala mediehandtag'
+      interaction:
+        interaction_date: 'Datum'
+        medium: 'Kommunikationsmedium'
+        notes: 'Anteckningar'
   activerecord:
     attributes:
       contact:
@@ -49,6 +58,14 @@ sv:
               blank: 'Adress krävs, vänligen ange'
             social_media_handle:
               blank: 'Sociala mediehandtag krävs, vänligen ange'
+        interaction:
+          attributes:
+            date:
+              blank: 'Datum krävs, vänligen ange'
+            medium:
+              blank: 'Kommunikationsmedium krävs, vänligen ange'
   submit:
     contact:
       save: 'Spara kontakt'
+    interaction:
+      save: 'Spara interaktion'

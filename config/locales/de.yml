@@ -1,4 +1,6 @@
 de:
+  date:
+    order: [ 'day', 'month', 'year' ]
   navbar:
     home: "Startseite"
     messages: "Nachrichten"
@@ -15,8 +17,11 @@ de:
   buttons:
     add_contact: "Kontakt hinzufügen"
     my_contacts: "Meine Kontakte"
+    add_interaction: "Interaktion hinzufügen"
   contacts:
     title: "Kontakte 📇"
+    last_interaction: "Letzter Kontakt"
+    past_interaction: "Vorherige Interaktionen"
   helpers:
     label:
       contact:
@@ -26,6 +31,10 @@ de:
         phone_number: 'Telefonnummer'
         address: 'Adresse'
         social_media_handle: 'Social-Media-Handle'
+      interaction:
+        interaction_date: 'Datum'
+        medium: 'Kommunikationsmittel'
+        notes: 'Notizen'
   activerecord:
     attributes:
       contact:
@@ -49,6 +58,14 @@ de:
               blank: 'Adresse ist erforderlich, bitte angeben'
             social_media_handle:
               blank: 'Social-Media-Handle ist erforderlich, bitte angeben'
+        interaction:
+          attributes:
+            date:
+              blank: 'Datum ist erforderlich, bitte angeben'
+            medium:
+              blank: 'Kommunikationsmittel ist erforderlich, bitte angeben'
   submit:
     contact:
       save: 'Kontakt speichern'
+    interaction:
+      save: 'Interaktion speichern'

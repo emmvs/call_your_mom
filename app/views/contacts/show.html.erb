@@ -1,6 +1,27 @@
-<div class="container mt-5">
-  <h2><%= @contact.name %></h2>
-  <h4><%= @contact.address %></h4>
-  <h4><%= @contact.phone_number %></h4>
-  <h4><%= @contact.social_media_handle.start_with?('@') ? @contact.social_media_handle : "@#{@contact.social_media_handle}" %></h4>
+<div class="container mt-5" data-controller="modal">
+  <div class="d-flex flex-wrap">
+    <div>
+      <div data-modal-target="overlay"></div>
+        <%= render partial: "interactions/interaction-form", locals: { contact: @contact, interaction: @interaction} %>
+        <h2><%= @contact.name %></h2>
+        <p><%= t('contacts.last_interaction') %>: <%= @contact.interactions.last.interaction_date.strftime("%b %d, %Y") %></p>
+        <h4><%= @contact.address %></h4>
+        <h4><%= @contact.phone_number %></h4>
+        <h4><%= @contact.social_media_handle.start_with?('@') ? @contact.social_media_handle : "@#{@contact.social_media_handle}" %></h4>
+        <div data-action="click->modal#open">
+          <h3 class="btn btn-success"><%= t('buttons.add_interaction') %></h3>
+        </div>
+    </div>
+    <div class="mt-4 mt-lg-0 mx-lg-4">
+      <h2><%= t('contacts.past_interaction') %></h2>
+      <% @interactions.each do |interaction| %>
+      <div class="card p-3">
+        <p> <%= interaction.medium.name %>, <%= interaction.interaction_date.strftime("%b %d, %Y") %></p>
+        <% interaction.notes.each do |note| %>
+          <p>Notes: <%= note.text %></p>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>

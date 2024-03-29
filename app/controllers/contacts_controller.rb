@@ -1,7 +1,11 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
-  def show; end
+  def show
+    @interaction = Interaction.new
+    @interaction.notes.build
+    @interactions = @contact.interactions
+  end
 
   def index
     @contacts = current_user.contacts

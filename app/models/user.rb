@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-        :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable
 
   has_one :user_setting, dependent: :destroy
 
@@ -14,7 +14,12 @@ class User < ApplicationRecord
   has_many :media, dependent: :destroy
   has_many :reminders, dependent: :destroy
 
-  validates :username, uniqueness: true, format: { with: GITHUB_USERNAME_PATTERN, message: "Can only contain lowercase letters, numbers, underscores, periods, & cannot begin nor end with a period or underscore 🌈" }
+  validates :username, uniqueness: true,
+                       format: {
+                         with: GITHUB_USERNAME_PATTERN,
+                         message: "Must contain only lowercase letters, numbers, underscores, " \
+                                  "or periods, & cannot start or end with a period or underscore 🌈"
+                       }
 
-  validates :first_name, :last_name, presence: :true
+  validates :first_name, :last_name, presence: true
 end

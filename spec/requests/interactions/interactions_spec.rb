@@ -1,7 +1,7 @@
 RSpec.describe "Interactions", type: :request do
   let(:user) { create(:user) }
-  let(:contact) { create(:contact, user: user) }
-  let(:medium) { create(:medium, user: user) }
+  let(:contact) { create(:contact, user:) }
+  let(:medium) { create(:medium, user:) }
   let(:interaction_attributes) do
     attributes_for(:interaction,
                    user_id: user.id,

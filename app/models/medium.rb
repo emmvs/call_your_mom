@@ -1,5 +1,8 @@
 class Medium < ApplicationRecord
-  MEDIA_TYPES = ['In Person', 'Phone Call', 'Text Message', 'Voice Message', 'Social Media', 'Gaming', 'Email', 'Meme'].freeze
+  MEDIA_TYPES = [
+    'In Person', 'Phone Call', 'Text Message', 'Voice Message',
+    'Social Media', 'Gaming', 'Email', 'Meme'
+  ].freeze
 
   belongs_to :user
   has_many :interactions, dependent: :destroy

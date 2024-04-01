@@ -11,7 +11,7 @@ RSpec.describe "Contact creation", type: :system do
   ].each do |example|
     it "displays the form in #{example[:user]}'s preferred language" do
       user = send(example[:user])
-      login_as(user, scope: :user)
+      login_as(user)
       visit new_contact_path
 
       expect(page).to have_content(example[:content])
@@ -20,11 +20,11 @@ RSpec.describe "Contact creation", type: :system do
   end
 
   def user_setting_with_preferred_language(preferred_language)
-    FactoryBot.create(:user_setting, preferred_language:)
+    create(:user_setting, preferred_language:)
   end
 
-  let(:english_user) { FactoryBot.create(:user, user_setting: user_setting_with_preferred_language('en')) }
-  let(:german_user) { FactoryBot.create(:user, user_setting: user_setting_with_preferred_language('de')) }
-  let(:spanish_user) { FactoryBot.create(:user, user_setting: user_setting_with_preferred_language('es')) }
-  let(:swedish_user) { FactoryBot.create(:user, user_setting: user_setting_with_preferred_language('sv')) }
+  let(:english_user) { create(:user, user_setting: user_setting_with_preferred_language('en')) }
+  let(:german_user) { create(:user, user_setting: user_setting_with_preferred_language('de')) }
+  let(:spanish_user) { create(:user, user_setting: user_setting_with_preferred_language('es')) }
+  let(:swedish_user) { create(:user, user_setting: user_setting_with_preferred_language('sv')) }
 end

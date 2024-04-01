@@ -2,7 +2,7 @@ es:
   navbar:
     home: "Inicio"
     messages: "Mensajes"
-    action: "Acción"
+    user_settings: "Preferencias"
     another_action: "Otra acción"
     log_out: "Cerrar sesión"
     login: "Iniciar sesión"
@@ -14,6 +14,7 @@ es:
     sunshine: '¡Hola, sol! '
   buttons:
     add_contact: "Añadir contacto"
+    edit_contact: "Editar contacto"
     my_contacts: "Mis contactos"
   contacts:
     title: "Contactos 📇"

@@ -33,7 +33,7 @@ en:
   navbar:
     home: "Home"
     messages: "Messages"
-    action: "Action"
+    user_settings: "User Settings"
     another_action: "Another action"
     log_out: "Log out"
     login: "Login"
@@ -45,6 +45,7 @@ en:
     sunshine: 'Hello, Sunshine! '
   buttons:
     add_contact: "Add Contact"
+    edit_contact: "Edit Contact"
     my_contacts: "My Contacts"
   contacts:
     title: "Contacts 📇"

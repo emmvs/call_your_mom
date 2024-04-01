@@ -2,7 +2,7 @@ sv:
   navbar:
     home: "Hem"
     messages: "Meddelanden"
-    action: "Åtgärd"
+    user_settings: "Ändra profil"
     another_action: "En annan åtgärd"
     log_out: "Logga ut"
     login: "Logga in"
@@ -14,6 +14,7 @@ sv:
     sunshine: 'Hej, solstråle! '
   buttons:
     add_contact: "Lägg till kontakt"
+    edit_contact: "Ändra kontakt"
     my_contacts: "Mina kontakter"
   contacts:
     title: "Kontakter 📇"

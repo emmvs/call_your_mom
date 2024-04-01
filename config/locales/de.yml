@@ -2,7 +2,7 @@ de:
   navbar:
     home: "Startseite"
     messages: "Nachrichten"
-    action: "Aktion"
+    user_settings: "Profil bearbeiten"
     another_action: "Eine andere Aktion"
     log_out: "Abmelden"
     login: "Anmelden"
@@ -14,7 +14,8 @@ de:
     sunshine: 'Hallo, Sonnenschein! '
   buttons:
     add_contact: "Kontakt hinzufügen"
-    my_contacts: "Meine Kontakte"
+    edit_contact: "Deinen Kontakt bearbeiten"
+    my_contacts: "Mein Adressbuch"
   contacts:
     title: "Kontakte 📇"
   helpers:

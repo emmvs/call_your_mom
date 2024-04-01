@@ -22,14 +22,14 @@ class ApplicationController < ActionController::Base
 
   def determine_timezone
     if user_has_preferred_timezone?
-      current_user.user_setting.time_zone
+      current_user_settings.time_zone
     else
       request_location_time_zone || DEFAULT_TIME_ZONE
     end
   end
 
   def user_has_preferred_timezone?
-    user_signed_in? && current_user.user_setting&.time_zone.present?
+    user_signed_in? && current_user_settings&.time_zone.present?
   end
 
   def request_location_time_zone
@@ -39,7 +39,10 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    preferred_language = current_user&.user_setting&.preferred_language
-    I18n.locale = preferred_language || I18n.default_locale
+    I18n.locale = current_user_settings&.preferred_language || I18n.default_locale
+  end
+
+  def current_user_settings
+    current_user&.user_setting
   end
 end

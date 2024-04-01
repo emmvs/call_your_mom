@@ -20,25 +20,26 @@ class ApplicationController < ActionController::Base
     Time.zone = determine_timezone
   end
 
-  def request_location_time_zone
-    location_data = Geocoder.search(request.remote_ip).first
-    location_data&.data&.dig('timezone')
-  end
-
-  def set_locale
-    preferred_language = current_user&.user_setting&.preferred_language
-    I18n.locale = preferred_language || I18n.default_locale
-  end
-
-  def user_has_preferred_timezone?
-    user_signed_in? && current_user.user_setting&.time_zone.present?
-  end
-
   def determine_timezone
     if user_has_preferred_timezone?
       current_user.user_setting.time_zone
     else
       request_location_time_zone || DEFAULT_TIME_ZONE
     end
+  end
+
+  def user_has_preferred_timezone?
+    user_signed_in? && current_user.user_setting&.time_zone.present?
+  end
+
+  def request_location_time_zone
+    # TODO: Comment about why .first
+    geocoder_result = Geocoder.search(request.remote_ip).first
+    geocoder_result&.data&.dig('timezone')
+  end
+
+  def set_locale
+    preferred_language = current_user&.user_setting&.preferred_language
+    I18n.locale = preferred_language || I18n.default_locale
   end
 end

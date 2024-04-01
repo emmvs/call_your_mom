@@ -1,38 +1,38 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: %i[show edit update destroy]
-  before_action :set_contacts, only: %i[index create]
-
-  def show; end
+  before_action :set_contacts, only: %i[index]
 
   def index; end
+
+  def show; end
 
   def new
     @contact = Contact.new
   end
 
   def create
-    return create_response if saved_contacts?
+    return create_response if contacts_saved?
 
-    redirect_with_notice(contacts_path, 'Not all contacts were successfully created. 😕')
+    redirect_with_notice(path: contacts_path, notice: 'Not all contacts were successfully created. 😕')
   end
 
   def edit; end
 
   def update
-    return redirect_with_notice(@contact, 'Contact was updated. 🪄') if @contact.update(contact_params)
+    return redirect_with_notice(path: @contact, notice: 'Contact was updated. 🪄') if @contact.update(contact_params)
 
     render_edit
   end
 
   def destroy
     @contact.destroy
-    redirect_with_notice(contacts_path, 'Contact was deleted. 🗑️', :see_other)
+    redirect_with_notice(path: contacts_path, notice: 'Contact was deleted. 🗑️', status: :see_other)
   end
 
   private
 
   def set_contact
-    @contact = current_user.contacts.find_by(id: params[:id])
+    @contact = Contact.find_by(id: params[:id])
     redirect_with_alert(contacts_path, "Contact not found. 🤷🏼‍♀️") unless @contact
   end
 
@@ -44,7 +44,7 @@ class ContactsController < ApplicationController
     params.require(:contact).permit(:name, :relationship, :email, :phone_number, :address, :social_media_handle)
   end
 
-  def saved_contacts?
+  def contacts_saved?
     created_contacts.all?(&:persisted?)
   end
 
@@ -58,12 +58,12 @@ class ContactsController < ApplicationController
 
   def create_response
     respond_to do |format|
-      format.json { render json: { contacts: @contacts } }
-      format.html { redirect_with_notice(contacts_path, 'Contacts were successfully created. 📇') }
+      format.json { render json: { contacts: set_contacts } }
+      format.html { redirect_with_notice(path: contacts_path, notice: 'Contacts were successfully created. 📇') }
     end
   end
 
-  def redirect_with_notice(path, notice, status = :found)
+  def redirect_with_notice(path:, notice:, status: :found)
     redirect_to path, notice:, status:
   end
 

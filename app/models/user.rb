@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   GITHUB_USERNAME_PATTERN = /\A(?!\.)(?!_)[a-z0-9_\.]+(?<!\.)(?<!_)\z/
+  PERMITTED_PARAMS = %i[username email first_name middle_name last_name nickname emoji]
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

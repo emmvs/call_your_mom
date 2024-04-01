@@ -7,11 +7,10 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def configure_permitted_parameters
-    keys = %i[username email first_name middle_name last_name nickname emoji]
     # For additional fields in app/views/devise/registrations/new.html.erb
-    devise_parameter_sanitizer.permit(:sign_up, keys:)
+    devise_parameter_sanitizer.permit(:sign_up, keys: User::PERMITTED_PARAMS)
     # For additional in app/views/devise/registrations/edit.html.erb
-    devise_parameter_sanitizer.permit(:account_update, keys:)
+    devise_parameter_sanitizer.permit(:account_update, keys: User::PERMITTED_PARAMS)
   end
 
   private

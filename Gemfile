@@ -16,6 +16,9 @@ gem 'stimulus-rails' # JS Framework [https://stimulus.hotwired.dev]
 # JavaScript w/o Webpack
 gem 'importmap-rails' # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 
+# Geolocation
+gem 'geocoder' # Geocoding library for Ruby [https://github.com/alexreisner/geocoder]
+
 # Stylesheets
 gem 'sass-rails' # Sass for stylesheets w/ Rails
 
@@ -26,26 +29,26 @@ gem 'font-awesome-sass', '~> 6.1'
 gem 'simple_form', github: 'heartcombo/simple_form'
 
 # Authentication and security
-gem 'bcrypt', '~> 3.1.7' # Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+gem 'bcrypt', '~> 3.1.7'
 gem 'devise' # Comprehensive authentication solution
 
-# Performance & Optimization
-gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ] # Timezone data for Windows
-gem 'bootsnap', require: false # Reduces boot times through caching; required in config/boot.rb
-
+# Development and Test Essentials
 group :development, :test do
   gem 'rspec-rails'
-  gem 'debug', platforms: %i[ mri mingw x64_mingw ]
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
   gem 'faker'
   gem 'pry-byebug'
 end
 
+# Development-specific tools
 group :development do
   gem 'web-console' # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'rubocop', require: false
 end
 
+# Testing tools
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'factory_bot_rails'
@@ -53,6 +56,10 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
+
+# Performance & Optimization
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby] # Timezone data for Windows
+gem 'bootsnap', require: false # Reduces boot times through caching; required in config/boot.rb
 
 # Uncomment the following gems as needed:
 # gem 'jbuilder' # For JSON API builder [https://github.com/rails/jbuilder]

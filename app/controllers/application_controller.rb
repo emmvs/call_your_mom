@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_time_zone, if: :user_signed_in?
+  before_action :set_time_zone
   before_action :set_locale
 
   def configure_permitted_parameters
@@ -21,7 +21,20 @@ class ApplicationController < ActionController::Base
   # set in the user's profile, all time-related data will reflect the user's local time.
   # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   def set_time_zone
-    Time.zone = current_user.user_setting.time_zone if current_user.user_setting&.time_zone.present?
+    # If the user is signed in and has a time zone set, use it
+    if user_signed_in? && current_user.user_setting&.time_zone.present?
+      # Geocoder sets timezone based on the IP address
+      Time.zone = current_user.user_setting.time_zone
+    else
+      default_time_zone = "UTC"
+      # Try to determine the time zone from the request's IP if the user has not set a preference
+      Time.zone = request_location_time_zone || default_time_zone
+    end
+  end
+
+  def request_location_time_zone
+    location_data = Geocoder.search(request.remote_ip).first
+    location_data&.data&.dig('timezone')
   end
 
   def set_locale

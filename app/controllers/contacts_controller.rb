@@ -45,13 +45,11 @@ class ContactsController < ApplicationController
   end
 
   def contacts_saved?
-    created_contacts.all?(&:persisted?)
+    created_contacts&.all?(&:persisted?)
   end
 
   def created_contacts
-    return [] unless params[:contacts].present?
-
-    @created_contacts ||= params[:contacts].map do |contact_data|
+    @created_contacts ||= params[:contacts]&.map do |contact_data|
       current_user.contacts.create(contact_data.permit(:name, :email, :phone_number))
     end
   end

@@ -1,45 +1,77 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact, only: %i[show edit update destroy]
+  before_action :set_contacts, only: %i[index create]
 
   def show; end
 
-  def index
-    @contacts = current_user.contacts
-  end
+  def index; end
 
   def new
     @contact = Contact.new
   end
 
   def create
-    @contact = current_user.contacts.new(contact_params)
-    if @contact.save
-      redirect_to contacts_path
-    else
-      render :new
-    end
+    return create_response if saved_contacts?
+
+    redirect_with_notice(contacts_path, 'Not all contacts were successfully created. 😕')
   end
 
   def edit; end
 
-  # TODO: Implement the update logic. You've prepared it with before_action, now you need to:
-  # - Attempt to update the contact with contact_params
-  # - Redirect or re-render edit based on success or failure
-  def update; end
+  def update
+    return redirect_with_notice(@contact, 'Contact was updated. 🪄') if @contact.update(contact_params)
 
-  # TODO: Implement destroy action. Make sure to handle:
-  # - Successful deletion with a redirect and notice
-  # - Potential errors or issues (if applicable)
-  def destroy; end
+    render_edit
+  end
+
+  def destroy
+    @contact.destroy
+    redirect_with_notice(contacts_path, 'Contact was deleted. 🗑️', :see_other)
+  end
 
   private
 
   def set_contact
     @contact = current_user.contacts.find_by(id: params[:id])
-    redirect_to contacts_path, alert: "Contact not found. 🤷🏼‍♀️" unless @contact.present?
+    redirect_with_alert(contacts_path, "Contact not found. 🤷🏼‍♀️") unless @contact
+  end
+
+  def set_contacts
+    @contacts = current_user.contacts.order(:name)
   end
 
   def contact_params
     params.require(:contact).permit(:name, :relationship, :email, :phone_number, :address, :social_media_handle)
+  end
+
+  def saved_contacts?
+    created_contacts.all?(&:persisted?)
+  end
+
+  def created_contacts
+    return [] unless params[:contacts].present?
+
+    @created_contacts ||= params[:contacts].map do |contact_data|
+      current_user.contacts.create(contact_data.permit(:name, :email, :phone_number))
+    end
+  end
+
+  def create_response
+    respond_to do |format|
+      format.json { render json: { contacts: @contacts } }
+      format.html { redirect_with_notice(contacts_path, 'Contacts were successfully created. 📇') }
+    end
+  end
+
+  def redirect_with_notice(path, notice, status = :found)
+    redirect_to path, notice:, status:
+  end
+
+  def redirect_with_alert(path, alert)
+    redirect_to path, alert:, status: :found
+  end
+
+  def render_edit
+    render :edit, status: :unprocessable_entity
   end
 end

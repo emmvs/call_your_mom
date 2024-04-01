@@ -1,12 +1,17 @@
-<div class="container mt-5">
+<div class="container my-3 p-5" data-controller="contact-picker">
   <h2><%= t('contacts.title') %></h2>
-  <div class="container-contacts d-flex">
-    <% @contacts.each do |contact| %>
-      <div class="card p-3 rounded m-3">
-        <%= link_to contact_path(contact), class: "text-decoration-none" do %>
-          <%= contact.name %>
-        <% end %>
+  <button class="btn btn-primary my-4" data-action="click->contact-picker#selectAllContacts">Import Contacts</button>
+  <div class="row" data-contact-picker-target="contactsList">
+    <% @contacts.each_with_index do |contact, index| %>
+      <% if index % 3 == 0 %><div class="w-100 d-none d-md-block"></div><% end %>
+      <div class="col-md-4 mb-4">
+        <div class="card p-1">
+          <%= link_to contact_path(contact), class: "text-decoration-none" do %>
+            <%= contact.name %>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
+  <%= link_to 'Back', root_path, class: 'btn' %>
 </div>

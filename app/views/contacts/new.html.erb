@@ -1,33 +1,40 @@
-<div class="container m-5 p-5">
+<div class="container my-3 p-5" data-controller="contact-picker">
   <h3><%= t('buttons.add_contact') %></h3>
+  <button class="my-3" type="button" data-action="click->contact-picker#selectContact">Select from Contacts</button>
   <%= simple_form_for @contact do |f| %>
     <%= f.input :name, 
                 label: t('helpers.label.contact.name'), 
-                error: t('activerecord.errors.models.contact.attributes.name.blank') %>
+                error: t('activerecord.errors.models.contact.attributes.name.blank'),
+                input_html: { data: { contact_picker_target: 'name' } } %>
 
     <%= f.input :relationship, 
                 label: t('helpers.label.contact.relationship'), 
                 collection: Contact::RELATIONSHIP_TYPES.map { |type| [t("contacts.relationships.#{type}"), type] }, 
                 prompt: 'Choose a relationship',
-                error: t('activerecord.errors.models.contact.attributes.relationship.blank') %>
+                error: t('activerecord.errors.models.contact.attributes.relationship.blank'),
+                input_html: { data: { contact_picker_target: 'relationship' } } %>
 
     <%= f.input :email, 
                 as: :email, 
                 placeholder: 'user@domain.com', 
-                error: t('activerecord.errors.models.contact.attributes.email.blank') %>
+                error: t('activerecord.errors.models.contact.attributes.email.blank'),
+                input_html: { data: { contact_picker_target: 'email' } } %>
 
     <%= f.input :phone_number, 
                 label: t('helpers.label.contact.phone_number'), 
                 placeholder: '+1234567890', 
-                error: t('activerecord.errors.models.contact.attributes.phone_number.blank') %>
+                error: t('activerecord.errors.models.contact.attributes.phone_number.blank'),
+                input_html: { data: { contact_picker_target: 'phoneNumber' } } %>
 
     <%= f.input :address, 
                 label: t('helpers.label.contact.address'), 
-                error: t('activerecord.errors.models.contact.attributes.address.blank') %>
+                error: t('activerecord.errors.models.contact.attributes.address.blank'),
+                input_html: { data: { contact_picker_target: 'address' } } %>
 
     <%= f.input :social_media_handle, 
                 placeholder: '@yourhandle', 
-                error: t('activerecord.errors.models.contact.attributes.social_media_handle.blank') %>
+                error: t('activerecord.errors.models.contact.attributes.social_media_handle.blank'),
+                input_html: { data: { contact_picker_target: 'socialMediaHandle' } } %>
 
     <%= f.button :submit, t('submit.contact.save') %>
   <% end %>

@@ -17,11 +17,7 @@ class ApplicationController < ActionController::Base
 
   def set_time_zone
     # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-    Time.zone = if user_has_preferred_timezone?
-                  current_user.user_setting.time_zone
-                else
-                  request_location_time_zone || DEFAULT_TIME_ZONE
-                end
+    Time.zone = determine_timezone
   end
 
   def request_location_time_zone
@@ -36,5 +32,13 @@ class ApplicationController < ActionController::Base
 
   def user_has_preferred_timezone?
     user_signed_in? && current_user.user_setting&.time_zone.present?
+  end
+
+  def determine_timezone
+    if user_has_preferred_timezone?
+      current_user.user_setting.time_zone
+    else
+      request_location_time_zone || DEFAULT_TIME_ZONE
+    end
   end
 end

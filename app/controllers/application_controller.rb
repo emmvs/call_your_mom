@@ -15,20 +15,13 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # Sets the application's time zone based on the current user's settings. This method is a part of ensuring
-  # that the user experience is consistent and personalized across the application. By using the time zone
-  # set in the user's profile, all time-related data will reflect the user's local time.
-  # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   def set_time_zone
-    # If the user is signed in and has a time zone set, use it
-    if user_signed_in? && current_user.user_setting&.time_zone.present?
-      # Geocoder sets timezone based on the IP address
-      Time.zone = current_user.user_setting.time_zone
-    else
-      default_time_zone = "UTC"
-      # Try to determine the time zone from the request's IP if the user has not set a preference
-      Time.zone = request_location_time_zone || default_time_zone
-    end
+    # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+    Time.zone = if user_has_preferred_timezone?
+                  current_user.user_setting.time_zone
+                else
+                  request_location_time_zone || DEFAULT_TIME_ZONE
+                end
   end
 
   def request_location_time_zone
@@ -39,5 +32,9 @@ class ApplicationController < ActionController::Base
   def set_locale
     preferred_language = current_user&.user_setting&.preferred_language
     I18n.locale = preferred_language || I18n.default_locale
+  end
+
+  def user_has_preferred_timezone?
+    user_signed_in? && current_user.user_setting&.time_zone.present?
   end
 end

@@ -6,15 +6,15 @@ User.destroy_all
 
 # Create users
 emma = User.create(
-  username: 'emmvs', 
-  email: 'emma@test.com', 
-  password: '123456', 
+  username: 'emmvs',
+  email: 'emma@test.com',
+  password: '123456',
   first_name: 'Emma', 
-  middle_name: 'Anna Agneta', 
+  middle_name: 'Anna Agneta',
   last_name: 'Rünzel',
   nickname: 'Emmsi',
   emoji: '☀️'
-)
+  )
 
 josh = User.create(
   username: 'xxjmsxx',
@@ -38,12 +38,24 @@ santi = User.create(
   emoji: "🐘"
 )
 
+mamma = User.create(
+  username: 'kramktomat',
+  email: 'sylvia@test.com',
+  password: '123456',
+  first_name: 'Sylvia',
+  middle_name: 'Agneta',
+  last_name: 'Rünzel',
+  nickname: 'Mamma',
+  emoji: '💚'
+)
+
 puts "Created #{User.count} Users 🤷🏼‍♂️🧑🏽‍🦱💁🏼‍♀️"
 
 # Creating UserSettings
-UserSetting.create(user: emma, preferred_language: 'sv')
+UserSetting.create(user: emma, preferred_language: 'en')
 UserSetting.create(user: josh, preferred_language: 'de')
 UserSetting.create(user: santi, preferred_language: 'es')
+UserSetting.create(user: mamma, preferred_language: 'sv')
 
 puts "Created #{UserSetting.count} User Settings ☀️"
 users = User.find_each
@@ -111,6 +123,16 @@ Contact.create!(
   user: josh
 )
 
+Contact.create!(
+  name: 'Emma',
+  relationship: 'friend',
+  email: 'emma@ruenzel.de',
+  phone_number: '+49 157 85519243',
+  address: 'Altenbraker Straße 26, 12051 Berlin, Germany',
+  social_media_handle: 'emmvs',
+  user: mamma
+)
+
 puts "Created #{Contact.count} Contacts 📇"
 
 # Create friendships
@@ -144,7 +166,7 @@ puts "Created #{Friendship.count} Friendships ♥️"
 users.each do |user|
   Medium.create!(
     name: Medium::MEDIA_TYPES.sample,
-    user: user
+    user:
   )
 end
 

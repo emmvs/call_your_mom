@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   GITHUB_USERNAME_PATTERN = /\A(?!\.)(?!_)[a-z0-9_\.]+(?<!\.)(?<!_)\z/
-  # TODO: Update PERMITTED_PARAMS w/ user_settings f/ languages selection
-  PERMITTED_PARAMS = %i[username email first_name middle_name last_name nickname emoji]
+  PERMITTED_PARAMS = [
+    :username, :email, :first_name, :middle_name, :last_name, :nickname, :emoji,
+    { user_setting_attributes: %i[preferred_language time_zone] }
+  ].freeze
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -9,6 +11,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :user_setting, dependent: :destroy
+  accepts_nested_attributes_for :user_setting
 
   has_many :contacts, dependent: :destroy
   has_many :friendships, dependent: :destroy

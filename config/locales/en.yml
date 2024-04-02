@@ -38,11 +38,11 @@ en:
     log_out: "Log out"
     login: "Login"
   greetings:
-    morning: 'Good Morning, '
-    day: 'Good Day, '
-    evening: 'Good Evening, '
-    night: 'Good Night, '
-    sunshine: 'Hello, Sunshine! '
+    morning: 'Good Morning,'
+    day: 'Good Day,'
+    evening: 'Good Evening,'
+    night: 'Good Night,'
+    sunshine: 'Hello, Sunshine!'
   buttons:
     add_contact: "Add Contact"
     edit_contact: "Edit Contact"

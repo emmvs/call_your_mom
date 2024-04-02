@@ -7,11 +7,11 @@ sv:
     log_out: "Logga ut"
     login: "Logga in"
   greetings:
-    morning: 'God morgon, '
-    day: 'God dag, '
-    evening: 'God kväll, '
-    night: 'God natt, '
-    sunshine: 'Hej, solstråle! '
+    morning: 'God morgon,'
+    day: 'God dag,'
+    evening: 'God kväll,'
+    night: 'God natt,'
+    sunshine: 'Hej, solstråle!'
   buttons:
     add_contact: "Lägg till kontakt"
     edit_contact: "Ändra kontakt"

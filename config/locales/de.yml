@@ -7,11 +7,11 @@ de:
     log_out: "Abmelden"
     login: "Anmelden"
   greetings:
-    morning: 'Guten Morgen, '
-    day: 'Guten Tag, '
-    evening: 'Guten Abend, '
-    night: 'Gute Nacht, '
-    sunshine: 'Hallo, Sonnenschein! '
+    morning: 'Guten Morgen,'
+    day: 'Guten Tag,'
+    evening: 'Guten Abend,'
+    night: 'Gute Nacht,'
+    sunshine: 'Hallo, Sonnenschein!'
   buttons:
     add_contact: "Kontakt hinzufügen"
     edit_contact: "Deinen Kontakt bearbeiten"

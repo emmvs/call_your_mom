@@ -14,13 +14,13 @@ module DashboardHelper
 
   def day_attributes
     if morning_range.cover?(current_hour)
-      {time_of_day: 'morning', emoji: '🌱'}
+      { time_of_day: 'morning', emoji: '🌱' }
     elsif afternoon_range.cover?(current_hour)
-      {time_of_day: 'day', emoji: '☀️'}
+      { time_of_day: 'day', emoji: '☀️' }
     elsif evening_range.cover?(current_hour)
-      {time_of_day: 'evening', emoji: '🌈'}
+      { time_of_day: 'evening', emoji: '🌈' }
     else
-      {time_of_day: 'night', emoji: '🌙'} # TODO: Implement Moon depending on time of the month @josh
+      { time_of_day: 'night', emoji: '🌙' } # TODO: Implement Moon depending on time of the month @josh
     end
   end
 

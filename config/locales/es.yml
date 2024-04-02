@@ -7,11 +7,11 @@ es:
     log_out: "Cerrar sesión"
     login: "Iniciar sesión"
   greetings:
-    morning: 'Buenos días, '
-    day: 'Buen día, '
-    evening: 'Buenas tardes, '
-    night: 'Buenas noches, '
-    sunshine: '¡Hola, sol! '
+    morning: 'Buenos días,'
+    day: 'Buen día,'
+    evening: 'Buenas tardes,'
+    night: 'Buenas noches,'
+    sunshine: '¡Hola, sol!'
   buttons:
     add_contact: "Añadir contacto"
     edit_contact: "Editar contacto"

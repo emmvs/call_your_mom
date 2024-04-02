@@ -18,6 +18,7 @@ de:
     my_contacts: "Mein Adressbuch"
   contacts:
     title: "Kontakte 📇"
+    import_contacts: "Kontakte importieren"
   helpers:
     label:
       contact:

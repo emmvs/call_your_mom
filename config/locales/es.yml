@@ -18,6 +18,7 @@ es:
     my_contacts: "Mis contactos"
   contacts:
     title: "Contactos 📇"
+    import_contacts: "Importar contactos"
   helpers:
     label:
       contact:

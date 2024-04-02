@@ -18,6 +18,7 @@ sv:
     my_contacts: "Mina kontakter"
   contacts:
     title: "Kontakter 📇"
+    import_contacts: "Importera kontakter"
   helpers:
     label:
       contact:

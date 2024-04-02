@@ -49,6 +49,7 @@ en:
     my_contacts: "My Contacts"
   contacts:
     title: "Contacts 📇"
+    import_contacts: "Import Contacts"
   helpers:
     label:
       contact:

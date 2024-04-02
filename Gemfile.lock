@@ -76,6 +76,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    anbt-sql-formatter (0.1.0)
     ast (2.4.2)
     autoprefixer-rails (10.4.15.0)
       execjs (~> 2)
@@ -177,6 +178,9 @@ GEM
       racc
     pg (1.5.4)
     popper_js (2.11.8)
+    pp_sql (2.0.0)
+      activerecord
+      anbt-sql-formatter (~> 0.1.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -333,6 +337,7 @@ DEPENDENCIES
   geocoder
   importmap-rails
   pg (~> 1.1)
+  pp_sql
   pry-byebug
   puma (~> 5.0)
   rails (~> 7.0.8)

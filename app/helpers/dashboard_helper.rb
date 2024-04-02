@@ -25,11 +25,8 @@ module DashboardHelper
   end
 
   def current_hour
-    Time.current.in_time_zone(user_time_zone).hour
-  end
-
-  def user_time_zone
-    current_user.user_setting&.time_zone || 'Europe/Berlin'
+    # Uses time zone set in ApplicationController
+    Time.current.hour
   end
 
   def morning_range

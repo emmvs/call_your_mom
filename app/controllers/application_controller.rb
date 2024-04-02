@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def request_location_time_zone
-    # NOTE: We take the first result as it typically considered the most relevant or accurate for the given IP address
+    # NOTE: We take the first result as it's considered the most accurate for the given IP address
     geocoder_result = Geocoder.search(request.remote_ip).first
     geocoder_result&.data&.dig('timezone')
   end

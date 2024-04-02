@@ -44,6 +44,7 @@ end
 
 # Development-specific tools
 group :development do
+  gem 'pp_sql' # SQL Query Prettyfier
   gem 'web-console' # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'rubocop', require: false
 end
@@ -57,7 +58,7 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-# Performance & Optimization
+# Performance & Compatibility
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby] # Timezone data for Windows
 gem 'bootsnap', require: false # Reduces boot times through caching; required in config/boot.rb
 

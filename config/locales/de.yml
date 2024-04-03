@@ -16,6 +16,8 @@ de:
     add_contact: "Kontakt hinzufügen"
     edit_contact: "Deinen Kontakt bearbeiten"
     my_contacts: "Mein Adressbuch"
+    select_from_contacts: "Aus Kontakten auswählen"
+    save: "Speichern"
   contacts:
     title: "Kontakte 📇"
     import_contacts: "Kontakte importieren"
@@ -28,6 +30,8 @@ de:
         phone_number: 'Telefonnummer'
         address: 'Adresse'
         social_media_handle: 'Social-Media-Handle'
+    prompt:
+      choose_relationship: "Beziehung wählen"
   activerecord:
     attributes:
       contact:
@@ -35,6 +39,8 @@ de:
           friend: 'Freund*in'
           family: 'Familie'
           colleague: 'Kollege*in'
+          acquaintance: 'Bekannter'
+          enemy: 'Feind*in'
     errors:
       models:
         contact:

@@ -1,4 +1,4 @@
-<div class="bg-white position-absolute p-3 d-none modal-index" style="top: 50%; left: 50%; transform: translate(-50%, -50%);" data-modal-target="modal">
+<div class="bg-white position-absolute p-3 d-none modal-index"data-modal-target="modal">
   <div class="text-end" data-action="click->modal#close">x</div>
   <%= simple_form_for interaction do |f| %>
     <%= f.input :contact_id, as: :hidden, input_html: { value: params[:id] } %>

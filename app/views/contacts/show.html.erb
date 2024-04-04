@@ -1,18 +1,15 @@
-<div class="container mt-5" data-controller="modal">
-  <div class="d-flex flex-wrap">
-    <div>
-      <div data-modal-target="overlay"></div>
-        <%= render partial: "interactions/interaction-form", locals: { contact: @contact, interaction: @interaction} %>
-        <h2><%= @contact.name %></h2>
-        <p><%= t('contacts.last_interaction') %>: <%= @contact.interactions.last.interaction_date.strftime("%b %d, %Y") %></p>
-        <h4><%= @contact.address %></h4>
-        <h4><%= @contact.phone_number %></h4>
-        <h4><%= @contact.social_media_handle.start_with?('@') ? @contact.social_media_handle : "@#{@contact.social_media_handle}" %></h4>
-        <div data-action="click->modal#open">
-          <h3 class="btn btn-success"><%= t('buttons.add_interaction') %></h3>
-        </div>
+<div class="container mt-4 p-4">
+  <div class="card mt-4 p-5">
+    <div data-modal-target="overlay"></div>
+    <%= render partial: "interactions/interaction-form", locals: { contact: @contact, interaction: @interaction} %>
+    <% Contact::DISPLAY_ATTRIBUTES.each do |attribute| %>
+      <%= display_contact_attribute(attribute, @contact.send(attribute)) %>
+    <% end %>
+    <div class="mt-3">
+      <%= link_to 'Edit', edit_contact_path(@contact), class: 'btn' %>
+      <%= link_to 'Delete', contact_path(@contact), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: 'btn' %>
     </div>
-    <div class="mt-4 mt-lg-0 mx-lg-4">
+  <div class="mt-4 mt-lg-0 mx-lg-4">
       <h2><%= t('contacts.past_interaction') %></h2>
       <% @interactions.each do |interaction| %>
       <div class="card p-3">
@@ -24,4 +21,4 @@
       <% end %>
     </div>
   </div>
-</div>
+  <%= link_to 'Back', contacts_path, class: 'btn btn-secondary mt-3' %>

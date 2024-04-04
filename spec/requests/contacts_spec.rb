@@ -1,7 +1,7 @@
 RSpec.describe "Contacts", type: :request do
-  let(:user) { FactoryBot.create(:user) }
-  let(:contact) { FactoryBot.create(:contact, user:) }
-  let(:contact_attributes) { FactoryBot.attributes_for(:contact, user_id: user.id) }
+  let(:user) { create(:user) }
+  let(:contact) { create(:contact, user:) }
+  let(:contact_attributes) { attributes_for(:contact, user_id: user.id) }
 
   before { sign_in user }
 

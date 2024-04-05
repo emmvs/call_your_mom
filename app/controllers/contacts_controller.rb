@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
   def show
     @interaction = Interaction.new
     @interaction.notes.build
-    @interactions = @contact.interactions
+    @interactions = @contact.interactions.includes(:notes)
   end
 
   def new

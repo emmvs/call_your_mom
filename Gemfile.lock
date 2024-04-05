@@ -76,6 +76,8 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    anbt-sql-formatter (0.1.0)
+    ast (2.4.2)
     autoprefixer-rails (10.4.15.0)
       execjs (~> 2)
     bcrypt (3.1.19)
@@ -87,6 +89,7 @@ GEM
       popper_js (>= 2.11.8, < 3)
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
+    byebug (11.1.3)
     capybara (3.39.2)
       addressable
       matrix
@@ -96,6 +99,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    coderay (1.1.3)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
@@ -125,6 +129,7 @@ GEM
     ffi (1.16.3)
     font-awesome-sass (6.4.2)
       sassc (~> 2.0)
+    geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -136,6 +141,8 @@ GEM
     irb (1.8.1)
       rdoc
       reline (>= 0.3.8)
+    json (2.7.1)
+    language_server-protocol (3.17.0.3)
     loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -165,8 +172,21 @@ GEM
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    parallel (1.24.0)
+    parser (3.3.0.5)
+      ast (~> 2.4.1)
+      racc
     pg (1.5.4)
     popper_js (2.11.8)
+    pp_sql (2.0.0)
+      activerecord
+      anbt-sql-formatter (~> 0.1.0)
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-byebug (3.10.1)
+      byebug (~> 11.0)
+      pry (>= 0.13, < 0.15)
     psych (5.1.1)
       stringio
     public_suffix (5.0.3)
@@ -204,6 +224,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
+    rainbow (3.1.1)
     rake (13.0.6)
     rdoc (6.5.0)
       psych (>= 4.0.0)
@@ -231,6 +252,20 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
+    rubocop (1.62.1)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.31.2)
+      parser (>= 3.3.0.4)
+    ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -246,6 +281,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shoulda-matchers (6.2.0)
+      activesupport (>= 5.2.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -265,6 +302,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.5.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -296,13 +334,18 @@ DEPENDENCIES
   factory_bot_rails
   faker
   font-awesome-sass (~> 6.1)
+  geocoder
   importmap-rails
   pg (~> 1.1)
+  pp_sql
+  pry-byebug
   puma (~> 5.0)
   rails (~> 7.0.8)
   rspec-rails
+  rubocop
   sass-rails
   selenium-webdriver
+  shoulda-matchers (~> 6.0)
   simple_form!
   sprockets-rails
   stimulus-rails

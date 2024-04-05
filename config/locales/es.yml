@@ -1,0 +1,56 @@
+es:
+  navbar:
+    home: "Inicio"
+    messages: "Mensajes"
+    user_settings: "Preferencias"
+    another_action: "Otra acción"
+    log_out: "Cerrar sesión"
+    login: "Iniciar sesión"
+  greetings:
+    morning: 'Buenos días,'
+    day: 'Buen día,'
+    evening: 'Buenas tardes,'
+    night: 'Buenas noches,'
+    sunshine: '¡Hola, sol!'
+  buttons:
+    add_contact: "Añadir contacto"
+    edit_contact: "Editar contacto"
+    my_contacts: "Mis contactos"
+  contacts:
+    title: "Contactos 📇"
+    import_contacts: "Importar contactos"
+  helpers:
+    label:
+      contact:
+        name: 'Nombre de su persona'
+        relationship: 'Relación'
+        email: 'Correo electrónico'
+        phone_number: 'Número de teléfono'
+        address: 'Dirección'
+        social_media_handle: 'Manija de redes sociales'
+  activerecord:
+    attributes:
+      contact:
+        relationship_options:
+          friend: 'Amigo'
+          family: 'Familia'
+          colleague: 'Colega'
+    errors:
+      models:
+        contact:
+          attributes:
+            name:
+              blank: 'El nombre es obligatorio, por favor especifique uno'
+            relationship:
+              blank: 'La relación es obligatoria, por favor especifique una'
+            email:
+              blank: 'Un correo válido es obligatorio, por favor especifique uno'
+            phone_number:
+              blank: 'El número de teléfono es obligatorio, por favor especifique uno'
+            address:
+              blank: 'La dirección es obligatoria, por favor especifique una'
+            social_media_handle:
+              blank: 'El identificador de redes sociales es obligatorio, por favor especifique uno'
+  submit:
+    contact:
+      save: 'Guardar contacto'

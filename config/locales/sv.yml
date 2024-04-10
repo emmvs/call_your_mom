@@ -1,22 +1,29 @@
 sv:
+  date:
+    order: [ 'day', 'month', 'year' ]
   navbar:
     home: "Hem"
     messages: "Meddelanden"
-    action: "Åtgärd"
+    user_settings: "Ändra profil"
     another_action: "En annan åtgärd"
     log_out: "Logga ut"
     login: "Logga in"
   greetings:
-    morning: 'God morgon, '
-    day: 'God dag, '
-    evening: 'God kväll, '
-    night: 'God natt, '
-    sunshine: 'Hej, solstråle! '
+    morning: 'God morgon,'
+    day: 'God dag,'
+    evening: 'God kväll,'
+    night: 'God natt,'
+    sunshine: 'Hej, solstråle!'
   buttons:
     add_contact: "Lägg till kontakt"
+    edit_contact: "Ändra kontakt"
     my_contacts: "Mina kontakter"
+    add_interaction: "Lägg till interaktion"
   contacts:
     title: "Kontakter 📇"
+    import_contacts: "Importera kontakter"
+    last_interaction: "Senast kontaktad"
+    past_interaction: "Tidigare interaktioner"
   helpers:
     label:
       contact:
@@ -26,6 +33,10 @@ sv:
         phone_number: 'Telefonnummer'
         address: 'Adress'
         social_media_handle: 'Sociala mediehandtag'
+      interaction:
+        interaction_date: 'Datum'
+        medium: 'Kommunikationsmedium'
+        notes: 'Anteckningar'
   activerecord:
     attributes:
       contact:
@@ -49,6 +60,14 @@ sv:
               blank: 'Adress krävs, vänligen ange'
             social_media_handle:
               blank: 'Sociala mediehandtag krävs, vänligen ange'
+        interaction:
+          attributes:
+            date:
+              blank: 'Datum krävs, vänligen ange'
+            medium:
+              blank: 'Kommunikationsmedium krävs, vänligen ange'
   submit:
     contact:
       save: 'Spara kontakt'
+    interaction:
+      save: 'Spara interaktion'

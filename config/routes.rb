@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   end
   root "pages#home"
 
-  resources :contacts, only: %i[new create index show]
+  resources :contacts
+  resources :interactions, only: %i[create]
 end

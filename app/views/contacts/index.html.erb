@@ -1,12 +1,16 @@
-<div class="container mt-5">
+<div class="container my-2 py-5">
   <h2><%= t('contacts.title') %></h2>
-  <div class="container-contacts d-flex">
+  <button class="btn btn-primary my-4" data-action="click->contact-picker#selectAllContacts"><%= t('contacts.import_contacts') %></button>
+  <div class="row row-cols-1 row-cols-md-3 g-4" data-contact-picker-target="contactsList">
     <% @contacts.each do |contact| %>
-      <div class="card p-3 rounded m-3">
-        <%= link_to contact_path(contact), class: "text-decoration-none" do %>
-          <%= contact.name %>
-        <% end %>
+      <div class="col">
+        <div class="card h-100 p-4 bg-white text-dark">
+          <%= link_to contact_path(contact), class: "text-decoration-none text-dark" do %>
+            <%= contact.name %>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
+  <%= link_to 'Back', root_path, class: 'btn mt-3' %>
 </div>

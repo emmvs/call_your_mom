@@ -11,7 +11,7 @@ RSpec.describe "Contact creation", type: :system do
   ].each do |example|
     it "displays the form in #{example[:user]}'s preferred language" do
       user = send(example[:user])
-      login_as(user, scope: :user)
+      login_as(user)
       visit new_contact_path
 
       expect(page).to have_content(example[:content])

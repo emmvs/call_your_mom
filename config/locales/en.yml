@@ -30,24 +30,31 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  date:
+    order: [ 'day', 'month', 'year' ]
   navbar:
     home: "Home"
     messages: "Messages"
-    action: "Action"
+    user_settings: "User Settings"
     another_action: "Another action"
     log_out: "Log out"
     login: "Login"
   greetings:
-    morning: 'Good Morning, '
-    day: 'Good Day, '
-    evening: 'Good Evening, '
-    night: 'Good Night, '
-    sunshine: 'Hello, Sunshine! '
+    morning: 'Good Morning,'
+    day: 'Good Day,'
+    evening: 'Good Evening,'
+    night: 'Good Night,'
+    sunshine: 'Hello, Sunshine!'
   buttons:
     add_contact: "Add Contact"
+    edit_contact: "Edit Contact"
     my_contacts: "My Contacts"
+    add_interaction: "Add Interaction"
   contacts:
     title: "Contacts 📇"
+    import_contacts: "Import Contacts"
+    last_interaction: "Last contacted"
+    past_interaction: "Previous interactions"
   helpers:
     label:
       contact:
@@ -57,6 +64,10 @@ en:
         phone_number: 'Phone Number'
         address: 'Address'
         social_media_handle: 'Social Media Handle'
+      interaction:
+        interaction: 'Date'
+        medium: 'Communication Medium'
+        notes: 'Notes'
   activerecord:
     attributes:
       contact:
@@ -80,6 +91,14 @@ en:
               blank: 'Address is mandatory, please specify one'
             social_media_handle:
               blank: 'Social media handle is mandatory, please specify one'
+        interaction:
+          attributes:
+            date:
+              blank: 'Date is mandatory, please specify one'
+            medium:
+              blank: 'Communication medium is mandatory, please specify one'
   submit:
     contact:
       save: 'Save Contact'
+    interaction:
+      save: 'Save Interaction'

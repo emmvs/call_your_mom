@@ -1,0 +1,84 @@
+diff --git a/app/controllers/contacts_controller.rb b/app/controllers/contacts_controller.rb
+index c924c89..468b4ed 100644
+--- a/app/controllers/contacts_controller.rb
++++ b/app/controllers/contacts_controller.rb
+@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
+   def show
+     @interaction = Interaction.new
+     @interaction.notes.build
+-    @interactions = @contact.interactions
++    @interactions = @contact.interactions.includes(:notes)
+   end
+ 
+   def new
+diff --git a/app/controllers/interactions_controller.rb b/app/controllers/interactions_controller.rb
+index c798039..510237a 100644
+--- a/app/controllers/interactions_controller.rb
++++ b/app/controllers/interactions_controller.rb
+@@ -1,20 +1,31 @@
+ class InteractionsController < ApplicationController
+   def create
+-    interaction = Interaction.new(contact_id: params[:interaction][:contact_id], interaction_date: params[:interaction][:interaction_date])
+-    interaction.user = current_user
+-
+-    medium = Medium.find_or_create_by(name: params[:interaction][:medium], user: current_user)
+-
++    interaction = build_interaction
++    medium = find_or_create_medium
+     interaction.medium = medium
+-
+-    unless params[:interaction][:notes_attributes].values.first[:text].empty?
+-      interaction.notes.build(params[:interaction][:notes_attributes].values.first)
+-    end
++    build_notes(interaction)
+ 
+     if interaction.save
+-      redirect_to contact_path(interaction.contact_id)
++      redirect_to contact_path(interaction.contact_id), notice: "Interaction was successfully created."
+     else
+-      render :new
++      render :new, status: :unprocessable_entity
++    end
++  end
++
++  private
++
++  def build_interaction
++    Interaction.new(contact_id: params[:interaction][:contact_id], interaction_date: params[:interaction][:interaction_date], user: current_user)
++  end
++
++  def find_or_create_medium
++    Medium.find_or_create_by(name: params[:interaction][:medium], user: current_user)
++  end
++
++  def build_notes(interaction)
++    params[:interaction][:notes_attributes]&.each_value do |note_params|
++      text = note_params[:text]
++      interaction.notes.build(text:) unless text.blank?
+     end
+   end
+ end
+diff --git a/app/javascript/controllers/modal_controller.js b/app/javascript/controllers/modal_controller.js
+index 8387358..f6ea803 100644
+--- a/app/javascript/controllers/modal_controller.js
++++ b/app/javascript/controllers/modal_controller.js
+@@ -3,8 +3,8 @@ import { Controller } from "@hotwired/stimulus"
+ // Connects to data-controller="modal"
+ export default class extends Controller {
+   static targets = [ "modal", "overlay" ]
++
+   connect() {
+-    console.log("hello");
+   }
+ 
+   open() {
+diff --git a/app/views/contacts/show.html.erb b/app/views/contacts/show.html.erb
+index ee2d49e..1b6deb1 100644
+--- a/app/views/contacts/show.html.erb
++++ b/app/views/contacts/show.html.erb
+@@ -1,4 +1,4 @@
+-<div class="container mt-4 p-4">
++<div class="container mt-4 p-4" data-controller="modal">
+   <div class="card mt-4 p-5">
+     <div data-modal-target="overlay"></div>
+     <%= render partial: "interactions/interaction-form", locals: { contact: @contact, interaction: @interaction} %>

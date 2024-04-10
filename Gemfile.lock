@@ -76,6 +76,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    anbt-sql-formatter (0.1.0)
     ast (2.4.2)
     autoprefixer-rails (10.4.15.0)
       execjs (~> 2)
@@ -128,6 +129,7 @@ GEM
     ffi (1.16.3)
     font-awesome-sass (6.4.2)
       sassc (~> 2.0)
+    geocoder (1.8.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -165,6 +167,8 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.15.4-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.4-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.4-x86_64-linux)
@@ -176,6 +180,9 @@ GEM
       racc
     pg (1.5.4)
     popper_js (2.11.8)
+    pp_sql (2.0.0)
+      activerecord
+      anbt-sql-formatter (~> 0.1.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -314,6 +321,7 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
+  arm64-darwin-22
   x86_64-darwin-21
   x86_64-linux
 
@@ -329,8 +337,10 @@ DEPENDENCIES
   factory_bot_rails
   faker
   font-awesome-sass (~> 6.1)
+  geocoder
   importmap-rails
   pg (~> 1.1)
+  pp_sql
   pry-byebug
   puma (~> 5.0)
   rails (~> 7.0.8)

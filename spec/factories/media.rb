@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :medium do
-    sequence(:name) { |n| "Medium #{n}" }
     association :user
+    name { Medium::MEDIA_TYPES.sample }
   end
 end

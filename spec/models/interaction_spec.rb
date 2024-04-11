@@ -13,7 +13,10 @@ RSpec.describe Interaction, type: :model do
   end
 
   describe '#interaction_date' do
-    let(:interaction) { build(:interaction) }
+    let(:user) { create(:user) }
+    let(:contact) { create(:contact, user:) }
+    let(:medium) { create(:medium, user:) }
+    let(:interaction) { build(:interaction, user:, contact:, medium:) }
 
     it 'is valid with a future date' do
       interaction.interaction_date = 1.day.from_now

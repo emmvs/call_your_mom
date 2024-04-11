@@ -1,4 +1,9 @@
 class Interaction < ApplicationRecord
+  validates :interaction_date, presence: true
+  validates :contact_id, presence: true
+  validates :medium_id, presence: true
+  validates :user_id, presence: true
+
   belongs_to :user
   belongs_to :contact
   belongs_to :medium

@@ -8,4 +8,6 @@ class Medium < ApplicationRecord
   has_many :interactions, dependent: :destroy
 
   validates :name, inclusion: { in: MEDIA_TYPES, message: "%{value.capitalize} is not a valid medium 🔮" }
+  validates :name, presence: true
+  validates :user_id, presence: true
 end

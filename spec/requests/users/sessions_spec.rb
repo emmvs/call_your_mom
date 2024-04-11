@@ -6,7 +6,7 @@ RSpec.describe "User Sessions with Devise", type: :request do
   describe "POST /users/sign_in" do
     context "with valid credentials" do
       it "logs in the user and redirects to the dashboard" do
-        post user_session_path, params: { user: { email: user.username, password: 'password' } }
+        post user_session_path, params: { user: { username: user.username, password: 'password' } }
         expect(response).to redirect_to(root_path)
       end
     end

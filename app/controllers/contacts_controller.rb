@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: %i[index show edit update destroy]
+  before_action :set_contacts, only: %i[index]
+  before_action :set_contact, except: %i[index new]
 
   def index; end
 

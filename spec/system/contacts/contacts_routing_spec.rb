@@ -1,5 +1,5 @@
 RSpec.feature "Contacts Routing", type: :feature do
-  let(:user) { create(:user) }
+  let!(:user) { create(:user) }
   let!(:contact) { create(:contact, user:) }
 
   scenario "Unauthenticated users are redirected to login" do
@@ -10,6 +10,7 @@ RSpec.feature "Contacts Routing", type: :feature do
 
   scenario "Authenticated users can access contacts pages" do
     login_as(user, scope: :user)
+
     verify_access(contacts_path, 'Contacts 📇')
     verify_access(new_contact_path, 'Name of Your Person')
     verify_access(contact_path(contact), contact.name)
@@ -21,6 +22,7 @@ RSpec.feature "Contacts Routing", type: :feature do
   end
 
   def verify_access(path, content)
+    puts current_url
     visit path
     expect(current_path).to eq(path)
     expect(page).to have_content(content)

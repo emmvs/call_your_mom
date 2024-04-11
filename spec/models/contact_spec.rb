@@ -1,8 +1,11 @@
 RSpec.describe Contact, type: :model do
   subject(:contact) { build(:contact) }
 
-  describe 'associations and validations' do
-    it { is_expected.to belong_to(:user) }
+  describe 'associations' do
+    it { is_expected.to belong_to(:user).required(true) }
+  end
+
+  describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:relationship) }
     it { is_expected.to allow_value('example@example.com').for(:email) }

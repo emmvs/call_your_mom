@@ -1,10 +1,14 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: %i[show edit update destroy]
   before_action :set_contacts, only: %i[index]
+  before_action :set_contact, except: %i[index new]
 
   def index; end
 
-  def show; end
+  def show
+    @interaction = Interaction.new
+    @interaction.notes.build
+    @interactions = @contact.interactions.includes(:notes)
+  end
 
   def new
     @contact = Contact.new

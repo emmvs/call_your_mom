@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   root "pages#home"
 
   resources :contacts
+  resources :interactions, only: %i[create]
 end

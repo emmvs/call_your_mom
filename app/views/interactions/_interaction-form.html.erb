@@ -1,0 +1,12 @@
+<div class="bg-white position-absolute p-3 d-none modal-index"data-modal-target="modal">
+  <div class="text-end" data-action="click->modal#close">x</div>
+  <%= simple_form_for interaction do |f| %>
+    <%= f.input :contact_id, as: :hidden, input_html: { value: params[:id] } %>
+    <%= f.input :interaction_date, as: :date, html5: true, label: t('helpers.label.interaction.interaction_date'), input_html: { value: Date.today }%>
+    <%= f.input :medium, collection: Medium::MEDIA_TYPES %>
+    <%= f.simple_fields_for :notes do |nf| %>
+        <%= nf.input :text, label: t('helpers.label.interaction.notes') %>
+      <% end %>
+    <%= f.button :submit, t('submit.interaction.save'), class: "btn btn-success"%>
+  <% end %>
+</div>

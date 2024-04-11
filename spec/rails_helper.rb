@@ -11,6 +11,7 @@ require 'rspec/rails'
 # System Tests w/ Capybara
 if ENV['BROWSER'] == 'true'
   Capybara.default_driver = :selenium
+  # Capybara.default_driver = :headless_firefox
 
   Capybara.register_driver :rack_test do |app|
     Capybara::RackTest::Driver.new(app, headers: { 'HTTP_USER_AGENT' => 'Capybara' })
